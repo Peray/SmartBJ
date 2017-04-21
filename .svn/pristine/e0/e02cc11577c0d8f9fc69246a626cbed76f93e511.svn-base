@@ -1,3 +1,0 @@
-struts.custom.i18n.resources=messages
-struts.ognl.allowStaticMethodAccess=true
-struts.multipart.saveDir=../temp/file_upload
