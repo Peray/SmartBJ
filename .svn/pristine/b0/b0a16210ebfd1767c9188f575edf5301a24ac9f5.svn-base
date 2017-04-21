@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+	<link rel="stylesheet" type="text/css" href="css/history.css">
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+			list-style-type: none;
+		}
+		
+		body {
+			font-family: "微软雅黑";
+			font-size: 14px;
+			color: #b5b5b5;
+			overflow: hidden;
+		}
+		
+		.ul-title {
+			list-style: none;
+			border-bottom: 1px solid #f0f0f0;
+			height: 36px;
+			line-height: 36px;
+		}
+		
+		.ul-title>li {
+			float: left;
+			width: 78px;
+			height: 36px;
+			text-align: center;
+			cursor: pointer;
+			font-size: 16px;
+			box-sizing: border-box;
+			font-weight: bold;
+		}
+		
+		.ul-content {
+			display: none;
+		}
+		
+		.e {
+			display: block;
+		}
+		
+		.title-style {
+			border-bottom: 4px solid #575757;
+			color: #575757;
+		}
+		
+		.ajaxHtml {
+			margin: 31px 0 0 36px;
+		}
+		
+		.ajaxHtml_name {
+			font-size: 16px;
+			color: #575757;
+			font-weight: bold;
+		}
+		
+		.ajaxHtml_detail {
+			background: url(img/22_10.png) no-repeat 8px 0;
+			padding-left: 32px;
+			margin-top: 10px;
+			font-size: 12px;
+		}
+		
+		.details {
+			margin: 16px 36px 0;
+			color: #212121;
+			height: 120px;
+			overflow: hidden;
+		}
+		
+		.details_img {
+			position:absolute;
+			bottom: 0;
+			background-color: #e0e0e0;
+		}
+		
+		.details_img>img {
+			width: 428px;
+			height: 160px;
+			padding: 22px 18px;
+		}
+		
+		.liright>p>span {
+			font-size: 12px;
+			display: inline-block;
+			width: 100px;
+			text-align: center;
+			cursor: pointer;
+		}
+		
+		.relay {
+			background: url(img/zf_21.png) no-repeat 18px center;
+		}
+		
+		.comment {
+			background: url(img/pl_21.png) no-repeat 18px center;
+		}
+		
+		.thumbs_up {
+			background: url(img/dz1_17.png) no-repeat 18px center;
+		}
+		
+		.timeblock .numfo {
+			background-position: 0px -144px;
+		}
+	</style>
+</head>
+
+<body>
+	<article>
+		<ul class="ul-title clearfix">
+			<li class="title-style"><span>基本信息</span></li>
+			<li><span>位博</span></li>
+		</ul>
+		<div class="ul-content e">
+			<div class="ajaxHtml"></div>
+			<div class="details" id="details">
+				<span class="details_name">详情：</span>
+				<span class="details_content">国子监是中国古代隋朝以后的中央官学，为中国古代教育体系中的最高学府，又称国子学或国子寺。<br/>
+					北宋庆历三年（公元1043年），范仲淹参政“庆历新政”，应天府书院升为南京（今商丘）国子监学，与东京（今开封）、西京（今洛阳）的国子监并列为北宋最高学府。[1] <br/>
+					明朝时期行使双京制，在南京和北京分别都设有国子监，设在南京的国子监被称为“南监”或“南雍”，而设在北京的国子监则被称为“北监”或“北雍”。南京国子监始建于东吴永安元年（公元258年），到明永乐年间，规模宏大，延袤十里，灯火相辉，盛况空前，当时邻邦高丽、日本、琉球、暹罗等国“向慕文教”，不断派留学生到南京国子监学习。北京国子监始建于元朝大德十年（公元1306年），是中国元、明、清三代国家管理教育的最高行政机关和国家设立的最高学府。</span>
+				</div>
+				<div class="details_img">
+					<img src="img/tiananmen/guozijian.jpg" alt="国子监" />
+				</div>
+			</div>
+			<div class="ul-content" id="ul_scroll">
+				<div id="arrow">
+					<ul>
+						<li class="arrowup"></li>
+						<li class="arrowdown"></li>
+					</ul>
+				</div>
+				<div id="history">
+					<div class="title">
+						<div id="circle">
+							<div class="cmsk"></div>
+							<div class="circlecontent">
+								<div thisyear="" class="timeblock">
+									<span class="numf"></span>
+									<span class="nums"></span>
+									<span class="numt"></span>
+									<span class="numfo"></span>
+									<div class="clear"></div>
+								</div>
+								<div class="timeyear">YEAR</div>
+							</div>
+							<a href="#" class="clock"></a>
+						</div>
+					</div>
+					<div id="content">
+						<ul class="list">
+							<li>
+								<div class="liwrap">
+									<div class="lileft">
+										<div class="date">
+											<span class="year">2016</span>
+											<span class="md">0802</span>
+										</div>
+									</div>
+									<div class="point"><b></b></div>
+									<div class="liright">
+										<div class="histt"><a href="#">国子监街：京师首善之地</a></div>
+										<div class="hisct"><img src="img/tiananmen/guozijian.jpg" alt="" /></div>
+										<p><span class="relay">1907</span><span class="comment">287</span><span class="thumbs_up">6574</span></p>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="liwrap">
+									<div class="lileft">
+										<div class="date">
+											<span class="year">2016</span>
+											<span class="md">0617</span>
+										</div>
+									</div>
+									<div class="point"><b></b></div>
+									<div class="liright">
+										<div class="histt"><a href="#">明朝二品官员一年俸禄买不到“大学入学指标”</a></div>
+										<div class="hisct"><img src="img/tiananmen/guozijian3.jpg" alt="" /></div>
+										<p><span class="relay">1907</span><span class="comment">287</span><span class="thumbs_up">6574</span></p>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="liwrap">
+									<div class="lileft">
+										<div class="date">
+											<span class="year">2015</span>
+											<span class="md">0608</span>
+										</div>
+									</div>
+									<div class="point"><b></b></div>
+									<div class="liright">
+										<div class="histt"><a href="#">北京国子监的国学班</a></div>
+										<div class="hisct"><img src="img/tiananmen/guozijian13.jpg" alt="" /></div>
+										<p><span class="relay">1907</span><span class="comment">287</span><span class="thumbs_up">6574</span></p>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="liwrap">
+									<div class="lileft">
+										<div class="date">
+											<span class="year">2014</span>
+											<span class="md">0929</span>
+										</div>
+									</div>
+									<div class="point"><b></b></div>
+									<div class="liright">
+										<div class="histt"><a href="#">北京国子监举行祭孔大典</a></div>
+										<div class="hisct"><img src="img/tiananmen/guozijian12.jpg" alt="" /></div>
+										<p><span class="relay">1907</span><span class="comment">287</span><span class="thumbs_up">6574</span></p>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="liwrap">
+									<div class="lileft">
+										<div class="date">
+											<span class="year">2012</span>
+											<span class="md">06</span>
+										</div>
+									</div>
+									<div class="point"><b></b></div>
+									<div class="liright">
+										<div class="histt"><a href="#">北京国子监坐落在北京东城区安定门内国子监街（原名成贤街）15号，与孔庙和雍和宫相邻。</a></div>
+										<div class="hisct"><img src="img/tiananmen/guozijian9.jpg" alt="" /></div>
+										<p><span class="relay">1907</span><span class="comment">287</span><span class="thumbs_up">6574</span></p>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="liwrap">
+									<div class="lileft">
+										<div class="date">
+											<span class="year">2011</span>
+											<span class="md">0707</span>
+										</div>
+									</div>
+									<div class="point"><b></b></div>
+									<div class="liright">
+										<div class="histt"><a href="#">国子监是中国古代隋朝以后的中央官学，为中国古代教育体系中的最高学府</a></div>
+										<div class="hisct"><img src="img/tiananmen/guozijian10.jpg" alt="" /></div>
+										<p><span class="relay">1907</span><span class="comment">287</span><span class="thumbs_up">6574</span></p>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="liwrap">
+									<div class="lileft">
+										<div class="date">
+											<span class="year">2010</span>
+											<span class="md">0707</span>
+										</div>
+									</div>
+									<div class="point"><b></b></div>
+									<div class="liright">
+										<div class="histt"><a href="#">清朝时期国子监牌楼</a></div>
+										<div class="hisct"><img src="img/tiananmen/guozijian11.jpg" alt="" /></div>
+										<p><span class="relay">1907</span><span class="comment">2845</span><span class="thumbs_up">645</span></p>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="liwrap">
+									<div class="lileft">
+										<div class="date">
+											<span class="year">2008</span>
+											<span class="md">02</span>
+										</div>
+									</div>
+									<div class="point"><b></b></div>
+									<div class="liright">
+										<div class="histt"><a href="#">明初设中都国子学﹐后改为国子监﹐掌国学诸生训导的政令。</a></div>
+										<div class="hisct"><img src="img/tiananmen/guozijian5.jpg" alt="" /></div>
+										<p><span class="relay">1907</span><span class="comment">287</span><span class="thumbs_up">6574</span></p>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="liwrap">
+									<div class="lileft">
+										<div class="date">
+											<span class="year">2007</span>
+											<span class="md">12</span>
+										</div>
+									</div>
+									<div class="point"><b></b></div>
+									<div class="liright">
+										<div class="histt"><a href="#">辽太祖置南面上京国子监﹐设祭酒﹑司业﹑丞﹑主簿﹑下辖国子学。</a></div>
+										<div class="hisct"><img src="img/tiananmen/guozijian6.jpg" alt="" /></div>
+										<p><span class="relay">1907</span><span class="comment">287</span><span class="thumbs_up">6574</span></p>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="liwrap">
+									<div class="lileft">
+										<div class="date">
+											<span class="year">2006</span>
+											<span class="md">10</span>
+										</div>
+									</div>
+									<div class="point"><b></b></div>
+									<div class="liright">
+										<div class="histt"><a href="#">西晋武帝咸宁四年（278）﹐始立国子学﹐设国子祭酒和博士各一员﹐掌教导诸生。</a></div>
+										<div class="hisct"><img src="img/tiananmen/guozijian7.jpg" alt="" /></div>
+										<p><span class="relay">1907</span><span class="comment">287</span><span class="thumbs_up">6574</span></p>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="liwrap">
+									<div class="lileft">
+										<div class="date">
+											<span class="year">2005</span>
+											<span class="md">07</span>
+										</div>
+									</div>
+									<div class="point"><b></b></div>
+									<div class="liright">
+										<div class="histt"><a href="#">国子监是中国古代的一种大学，始设于隋代。</a></div>
+										<div class="hisct"><img src="img/tiananmen/guozijian8.jpg" alt="" /></div>
+										<p><span class="relay">1907</span><span class="comment">287</span><span class="thumbs_up">6574</span></p>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="liwrap">
+									<div class="lileft">
+										<div class="date">
+										</div>
+									</div>
+									<div class="point"><b></b></div>
+									<div class="liright">
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</article>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/config.js"></script>
+		<script src="js/jquery.nicescroll.js"></script>
+		<script src="js/jquery.mousewheel.js"></script>
+		<script src="js/jquery.easing.min.js"></script>
+		<script src="js/history.js"></script>
+		<script src="js/detial.js"></script>
+	</body>
+
+	</html>

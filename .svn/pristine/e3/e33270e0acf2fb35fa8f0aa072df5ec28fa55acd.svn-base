@@ -1,0 +1,145 @@
+@media screen and (min-width: 48em){
+   .direction {
+          display: inline-block;
+          position: absolute;
+          top: 80px;
+          right: 2rem;
+          width: 120px;
+          height: 120px;
+          z-index: 20;
+          text-align: center;
+}
+#outerDiv{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 120px;
+        height: 120px;
+        background-image: url("../../img/vcm/3d-controls-rings.png");
+}
+    #m1 {
+        position: absolute;
+        width: 22px;
+        height: 22px;
+        background-repeat: no-repeat;
+        cursor: pointer;
+        background-image: url("../../img/vcm/pointer-north-short.png");
+        top: -7px;
+        left: 49px;
+        -ms-transform-origin: 11px 67px;
+        -webkit-transform-origin: 11px 67px;
+        transform-origin: 11px 67px;
+    }
+    /*.compass-pointer-north {
+        background-image: url("../../img/vcm/pointer-north-short.png");
+        top: -7px;
+        left: 49px;
+        -ms-transform-origin: 11px 67px;
+        -webkit-transform-origin: 11px 67px;
+        transform-origin: 11px 67px;
+    }
+    .compass-pointer-south {
+        background-image: url("../../img/vcm/pointer-south-short.png");
+        bottom: -7px;
+        left: 49px;
+        -ms-transform-origin: 11px -45px;
+        -webkit-transform-origin: 11px -45px;
+        transform-origin: 11px -45px;
+    }
+    .compass-pointer-east {
+        background-image: url("../../img/vcm/pointer-east-short.png");
+        top: 49px;
+        right: -7px;
+        -ms-transform-origin: -45px 11px;
+        -webkit-transform-origin: -45px 11px;
+        transform-origin: -45px 11px;
+    }
+    .compass-pointer-west {
+        background-image: url("../../img/vcm/pointer-west-short.png");
+        top: 49px;
+        left: -7px;
+        -ms-transform-origin: 67px 11px;
+        -webkit-transform-origin: 67px 11px;
+        transform-origin: 67px 11px;
+    }*/
+    .compass-north {
+        position: absolute;
+        top: 20px;
+        left: 40px;
+        width: 40px;
+        height: 20px;
+        background-image: url("../../img/vcm/3d-controls-north.png");
+        cursor: pointer;
+    }
+    .compass-south {
+        position: absolute;
+        top: 80px;
+        left: 40px;
+        width: 40px;
+        height: 20px;
+        background-image: url("../../img/vcm/3d-controls-south.png");
+        cursor: pointer;
+    }
+    .compass-center {
+        position: absolute;
+        top: 40px;
+        left: 35px;
+        width: 50px;
+        height: 40px;
+        background-image: url("../../img/vcm/3D.png");
+        background-repeat: no-repeat;
+        background-position: center center;
+        cursor:pointer;
+    }
+    .compass-west {
+        position: absolute;
+        top: 40px;
+        left: 20px;
+        width: 20px;
+        height: 40px;
+        background-image: url("../../img/vcm/3d-controls-west.png");
+        cursor: pointer;
+    }
+    .compass-east {
+        position: absolute;
+        top: 40px;
+        right: 20px;
+        width: 20px;
+        height: 40px;
+        background-image: url("../../img/vcm/3d-controls-east.png");
+        cursor: pointer;
+    }
+    .compass-center1 {
+        position: absolute;
+        top: 40px;
+        left: 35px;
+        width: 50px;
+        height: 40px;
+        background-image: url("../../img/vcm/2D.png");
+        background-repeat: no-repeat;
+        background-position: center center;
+        cursor:pointer;
+    }
+    .slope {
+      position: absolute;
+      top: 120px;
+      left: 0;
+      width: 120px;
+      height: 40px;
+      line-height: 50px;
+      z-index: 20;
+      text-align: center;
+    }
+    .slope>span{
+        display: inline-block;
+        width:30px;
+        height:20px;
+        cursor: pointer;
+    }
+    .slope_3d{
+        background: url("../../img/vcm/tilt-down.png") no-repeat center center;
+    }
+    .slope_2d{
+        background: url("../../img/vcm/tilt-up.png") no-repeat center center;
+    }
+}

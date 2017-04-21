@@ -1,0 +1,104 @@
+@charset "UTF-8";
+
+/**
+ * 
+ * @authors Your Name (you@example.org)
+ * @date    2017-03-28 16:42:20
+ * @version $Id$
+ */
+
+header {
+    background: url(../img/sq_bg_01.png) no-repeat center;
+}
+
+form {
+    width: 800px;
+    margin: auto;
+    padding: 50px 0 100px;
+    color: #575757;
+    font-size: 16px;
+}
+
+form>h4,
+form>p {
+    text-align: center;
+}
+
+form>h4 {
+    font-size: 30px;
+    margin-top: 30px;
+}
+
+form>p {
+    font-size: 24px;
+    text-align: center;
+    margin: 30px 0;
+}
+
+.bg_co {
+    background-color: #F6FAFF;
+    border: 1px solid #c5ddf3;
+    padding: 40px 0;
+}
+
+table {
+    margin: auto;
+}
+
+tr {
+    height: 70px;
+}
+
+tr>td:nth-child(1) {
+    text-align: right;
+}
+
+.td_top {
+    vertical-align: top;
+}
+
+tr>td:nth-child(2)>input {
+    border: 1px solid #959595;
+    width: 400px;
+    height: 30px;
+    padding: 5px 10px;
+}
+
+tr>td:nth-child(3) {
+    color: #e83636;
+}
+
+td>textarea {
+    border: 1px solid #959595;
+    width: 400px;
+    height: 100px;
+    resize: none;
+    padding: 5px 10px;
+    line-height: 15px;
+    font-size: 14px;
+    color: #959595;
+}
+
+.btn_application>input[type=submit] {
+    display: block;
+    margin: 15px auto;
+    width: 200px;
+    height: 40px;
+    background-color: #fff;
+    border-radius: 3px;
+    border: 1px solid #29d;
+    font-size: 18px;
+    color: #29d;
+    cursor: pointer;
+    -webkit-transition: background-color 0.5s linear;
+    -o-transition: background-color 0.5s linear;
+    transition: background-color 0.5s linear;
+    -webkit-transition: color 0.5s linear;
+    -o-transition: color 0.5s linear;
+    transition: color 0.5s linear;
+}
+
+.btn_application>input[type=submit]:hover {
+    background-color: #29d;
+    color: #fff;
+}

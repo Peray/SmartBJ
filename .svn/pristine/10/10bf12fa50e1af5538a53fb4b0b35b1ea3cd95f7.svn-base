@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<title>企业申请</title>
+	<link href="css/normal.css" rel="stylesheet">
+	<link href="css/common.css" rel="stylesheet">
+	<link href="css/application.css" rel="stylesheet">
+	<link rel="shortcut icon" href="img/ico/ico.png">
+</head>
+
+<body>
+	<header>
+		<div class="top_bar clearfix">
+			<div class="left_logo">
+				<img src="img/home/logo_03.png" alt="">
+			</div>
+			<ul class="clearfix ul_bar">
+				<li><img src="img/user.png" alt=""></li>
+				<li><a href="feedback.html">反馈</a></li>
+				<li class="Solution"><a href="">解决方案</a>
+					<ul class="Solution_list">
+						<li><a href="community.html">社区管理</a></li>
+						<li><a href="security.html">安保系统</a></li>
+						<li><a href="winav.html">窗内导航</a></li>
+						<li><a href="touch.html">联系我们</a></li>
+					</ul>
+				</li>
+				<li><a href="index.html">首页</a></li>
+			</ul>
+		</div>
+		<div class="flow">
+			<p class="flow_img">企业申请操作流程</p>
+			<p class="flow_span clearfix">
+				<span><img src="img/liucheng/11_03.png" alt=""><span class="flow_text">提交申请</span></span>
+				<span><img src="img/liucheng/01_06.png" alt=""></span>
+				<span><img src="img/liucheng/21_03.png" alt=""><span class="flow_text">资料审核</span></span>
+				<span><img src="img/liucheng/01_06.png" alt=""></span>
+				<span><img src="img/liucheng/31_03.png" alt=""><span class="flow_text">审核通过</span></span>
+				<span><img src="img/liucheng/01_06.png" alt=""></span>
+				<span><img src="img/liucheng/41_03.png" alt=""><span class="flow_text">免费试用</span></span>
+				<span><img src="img/liucheng/01_06.png" alt=""></span>
+				<span><img src="img/liucheng/51_03.png" alt=""><span class="flow_text">成功</span></span>
+			</p>
+		</div>
+	</header>
+	<section>
+		<!-- <div class="nav">首页 > 企业申请</div> -->
+		<form id="qyform">
+			<table>
+				<tbody>
+					<tr>
+						<td>公司名称：</td>
+						<td>
+							<input type="text" class="input_style" name="qiye_name" id="qiye_name" placeholder="请输入公司名称" onblur="qyname()" required>
+						</td>
+						<td>*</td>
+						<td class="td_error"></td>
+					</tr>
+					<tr>
+						<td>联系人姓名：</td>
+						<td>
+							<input type="text" class="input_style" name="lxr_name" id="lxr_name" placeholder="联系人" required>
+						</td>
+						<td>*</td>
+						<td class="td_error"></td>
+					</tr>
+					<tr>
+						<td>联系人座机或手机：</td>
+						<td>
+							<input type="text" class="input_style" name="tm" id="telephone" placeholder="请输入手机号码或座机号码" required>
+						</td>
+						<td>*</td>
+						<td class="td_error"></td>
+					</tr>
+					<tr>
+						<td>联系人邮箱：</td>
+						<td>
+							<input type="email" class="input_style" name="email" id="email" placeholder="请输入您的Email，如inter@smart.cn" required>
+						</td>
+						<td>*</td>
+						<td class="td_error"></td>
+					</tr>
+					<tr>
+						<td>申请检验网站地址：</td>
+						<td>
+							<input type="url" class="input_style" name="url" id="website_add" placeholder="请输入您的网址，如http://www.smart.com" required>
+						</td>
+						<td>*</td>
+						<td class="td_error"></td>
+					</tr>
+					<tr>
+						<td>法人姓名：</td>
+						<td>
+							<input type="text" class="input_style" name="faren" id="faren" placeholder="请输入公司法人姓名" required>
+						</td>
+						<td>*</td>
+						<td class="td_error"></td>
+					</tr>
+					<tr>
+						<td>营业执照附件：</td>
+						<td>
+							<input type="file" class="input_style" name="file" id="zz_img" required>
+						</td>
+						<td>*</td>
+						<td class="td_error"></td>
+					</tr>
+					<tr>
+						<td>期限：</td>
+						<td>
+							<label>
+								<input name="date" type="radio" value="3个月 " style="margin-right: 5px;" checked="checked"/>3个月 
+							</label>
+							<label style="margin-left:30px;">
+								<input name="date" type="radio" value="6个月 " style="margin-right: 5px;" checked=""/>6个月 
+							</label>
+							<label style="margin-left:30px;">
+								<input name="date" type="radio" value="12个月 " style="margin-right: 5px;" checked=""/>12个月 
+							</label>
+						</td>
+						<td>*</td>
+						<td class="td_error"></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td class="btn_application">
+							<input type="submit" value="提交申请" />
+						</td>
+					</tr>
+					<tr class="success">
+						<td></td>
+						<td>申请成功可获取API帮助</td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+	</section>
+	<footer>
+		<div id="company-box">
+			<img src="img/home/num_logo_04.png" />
+			<span class="drawing">审图号：京S（2012）053号</span>
+		</div>
+	</footer>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/application.js"></script>
+	<script src="js/validate/jquery.validate.min.js"></script>
+	<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
+	<script src="js/valid.js"></script>
+</body>
+
+</html>

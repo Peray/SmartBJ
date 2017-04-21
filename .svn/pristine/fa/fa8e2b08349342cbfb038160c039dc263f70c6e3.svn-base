@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Smart 北京</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="stylesheet" href="css/map.css">
+	<link rel="stylesheet" href="css/normal.css">
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/bootstrap-switch.css">
+	<link rel="stylesheet" href="css/loader-style.css">
+	<link rel="stylesheet" href="css/vcm/vcm.css">
+	<link rel="stylesheet" href="css/component.css">
+	<link rel="stylesheet" href="sium/Widgets/widgets.css" />
+	<link rel="stylesheet" href="css/page.css" />
+	<link rel="stylesheet" href="css/place.css" />
+	<script src="http://api.map.baidu.com/api?v=2.0&ak=8Lbt0XSuaSIK4ZRXB3iex7aUW4cM1Mi5"></script>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/classie.js"></script>
+	<script src="js/config.js"></script>
+	<script src="sium/Cesium.js"></script>
+    	<!-- <script src="Build/Cesium/Cesium.js" type="text/javascript"></script> -->
+	<!--<script src="js/CesiumHeatmap.js" type="text/javascript"></script>-->
+	<script src="js/globe.js"></script>
+	<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<!-- Fav and touch icons -->
+	<link rel="shortcut icon" href="img/ico/ico.png">
+	
+	<style>
+		body{
+			overflow: hidden !important;
+		}
+		#cesiumContainer{
+			width: 100%;
+			height: 100%;
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+		}
+	</style>
+	
+</head>
+<body onload="createCode()">
+	<div id="preloader">
+		<div id="status">&nbsp;</div>
+	</div>
+	<nav role="navigation" class="navbar navbar-static-top" id="navh">
+		<div class="container-fluid" style="height:50px;">
+			<div id="bs-example-navbar-collapse-1">
+				<ul class="logoe">
+					<li class="company-logo">
+					</li>
+					<!-- <li class="preay">
+						<a class="toggle-right ret" href="#">
+							<span class="fontawesome-circle-arrow-right"></span>
+						</a>
+					</li> -->
+				</ul>
+				<ul class="nav navbar-nav navbar-right nav2">
+					<!--<li onclick="GetPosition()" class="lightUp"><img src="img/003_08.png" title="高亮" /></li>--> 
+					<li onclick="fullscreen()" class="fontawesome-fullscreen" title="全屏" style="font-size: 18px;"></li>
+					<!--<li class="searchtwo_1">
+						<span class="fontawesome-search" title="搜索"></span>
+					</li>
+					<li class="logins2">
+						<span class="fontawesome-question-sign" title="帮助"></span>
+					</li>-->
+					<li class="logins3">
+						<span class="fontawesome-user" id="usert" title="登录"></span>
+						<span id="loginuser"  data-toggle="dropdown" class="dropdown-toggle"></span>
+						<ul role="menu" class="exit-menu dropdown-setting dropdown-menu">
+							<li class="exit-user"><a href="#">退出</a></li>
+						</ul>
+					</li>
+					<!-- <li class="logins4">
+						<span class="toggle-left fontawesome-resize-horizontal"></span>
+					</li> -->
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<!--<div id="slides">
+		<ul>
+			<li class="ot"><img src="img/home/Mouse.svg" /><span>鼠标操作</span></li>
+			<li><img src="img/home/Touch.svg" /><span>手指操作</span></li>
+		</ul>
+		<div class="figge">
+			<p><img src="img/home/MouseLeft.svg"><span>左键拖动旋转</span></p>
+			<p><img src="img/home/MouseRight.svg"><span>右键拖动调整距离</span></p>
+			<p><img src="img/home/MouseMiddle.svg"><span>滚轮滚动放大缩小</span></p>
+		</div>
+		<div class="figge">
+			<p><img src="img/home/TouchDrag.svg"><span>一根手指拖动旋转地球</span></p>
+			<p><img src="img/home/TouchZoom.svg"><span>两根手指拖动缩放视图</span></p>
+			<p><img src="img/home/TouchTilt.svg"><span>两根手指往同方向拖动倾斜角度</span></p>
+			<p><img src="img/home/TouchRotate.svg"><span>两根手指往反方向拖动旋转视图</span></p>
+		</div>
+	</div>-->
+	<div class="direction">
+		<div id="outerDiv">
+			<div id="m1" onclick="north()">
+			</div>
+		</div>
+		<div class="compass-north" onclick="lookUp()">
+		</div>
+		<div class="compass-south" onclick="lookDown()">
+		</div>
+		<div class="compass-center">
+		</div>
+		<div class="compass-west" onclick="lookLeft()">
+		</div>
+		<div class="compass-east" onclick="lookRight()">
+		</div>
+		<div class="slope">
+			<span class="slope_3d" onclick="tiltdown()"></span>
+			<span class="slope_2d" onclick="tiltup()"></span>
+		</div>
+	</div>
+
+	<div class="container-fluid papere">
+		<div id="viewerin">
+			<button onclick="back()">返回三维</button>
+		</div>
+		<div id="paper-middle">
+			<div id="cesiumContainer" class="fullSize" style="border: 1px solid #999;">
+			</div>
+			<div id="search_lg" class="search_lg">
+				<input type="text" id="suggestId" placeholder="请输入您要搜索的地点" required value="" />
+				<ul class="icones">
+					<li class="icon icon-cross closes input_icon" title="" data-original-title="cross">
+					</li>
+					<li class="fontawesome-search search_more input_icon" title="" data-original-title="search">
+					</li>
+					<li class="entypo-level-down level-down input_icon" title="路线" data-original-title="level-down">
+					</li>
+				</ul>
+			</div>
+			<div class="place_more">
+				<ul class="place_ol clearfix">
+					<li>
+						<span class="En">A</span>
+						<span>安宁庄</span>
+					</li>
+					<li>
+						<span class="En">B</span>
+						<span>北航</span>
+						<span class="sblack" onclick="flyto(116.31515194915083,39.89357157701106,2000,-90)">北京西站</span>
+					</li>
+					<li>
+						<span class="En">C</span>
+						<span class="sblack" onclick="flyto(116.47541773243832,39.943106204620236,2000,-90)">朝阳公园</span>
+						<span>车道沟</span>
+					</li>
+					<li>
+						<span class="En">D</span>
+						<span>大钟寺</span>
+						<span>定慧寺</span>
+					</li>
+					<li>
+						<span class="En">G</span>
+						<span class="sblack" onclick="flyto(116.3914733039, 39.9846924264, 500,-40)">国家体育馆</span>
+					</li>
+					<li>
+						<span class="En">J</span>
+						<span>交通大学</span>
+						<span>军博</span>
+					</li>
+					<li>
+						<span class="En">L</span>
+						<span>联想桥</span>
+					</li>
+					<li>
+						<span class="En">S</span>
+						<span class="sblack" onclick="flyto(116.44646047964474,39.93563120396797,2000,-90)">三里屯</span>
+					</li>
+					<li>
+						<span class="En">T</span>
+						<span class="sblack" onclick="flyto(116.39134676607188,39.90737234231261,2000,-90)">天安门</span>
+						<span class="sblack" onclick="flyto(116.4071675114, 39.8760581303, 500,-40)">天坛</span>
+					</li>
+					<li>
+						<span class="En">W</span>
+						<span class="sblack" onclick="flyto(116.40516254506171,39.90670855373609,2000,-90)">王府井</span>
+					</li>
+					<li>
+						<span class="En">Y</span>
+						<span class="sblack" onclick="flyto(116.45601664707542,39.94810637528992,2000,-90)">亮马桥</span>
+					</li>
+					<li>
+						<span class="En">Z</span>
+						<span class="sblack" onclick="flyto(116.40758644199826,39.85530864205842,2000,-90)">赵公口</span>
+						<span class="sblack" onclick="flyto(116.4583852298, 39.9095897922, 400,-40)">中央电视台</span>
+					</li>
+				</ul>
+			</div>
+			<div id="searchResult">
+				<ul id="itemContainer">
+				</ul>
+				<div class="footPage clearfix">
+					<div class="btn-group pull-left">
+						<div class="dataTables_info" id="sample_1_info" style="font-size: 12px;">
+							<span id="showitems"></span>共<span id="totalitems"></span>条记录
+						</div>
+					</div>
+					<div class="btn-group pull-right">
+						<ul class="pagination1" id="pagination2">
+						</ul>
+					</div>
+				</div>
+				<span class="search_load">
+					<img src="img/loading1.gif">
+				</span>
+				<p id="getdown">
+					<img src='img/down.gif' /></p>
+				</div>
+				<div id="searchResultPanel" style="border: 1px solid #C0C0C0; width: 150px; height: auto;
+				display: none;">
+			</div>
+			<div class="left-direction"><img class="toggle-right" src="img/ss2_06.png" alt=""></div>
+		</div>
+	</div>
+	<footer>
+		<div id="company-box">
+			<img src="img/home/num_logo_04.png"/>
+			<span class="drawing">审图号：京S（2012）053号</span>
+		</div>
+		<div id="pageflip">
+			<span class="entypo-cancel close2"></span>
+			<a href="javascript:void(0);" ><img class="ghty" src="img/page_flip.png"></a>
+			<div class="msg_block"></div>
+			<!-- <div class="row iconse">
+				<ul class="nav navbar-nav navbar-left">
+					<li>
+						<ul role="menu" class="color-menu dropdown-setting dropdown-menu">
+							<li class="theme-bg">
+								<div id="button-bg"></div>
+								<div id="button-bg2"></div>
+								<div id="button-bg3"></div>
+								<div id="button-bg5"></div>
+								<div id="button-bg6"></div>
+								<div id="button-bg7"></div>
+								<div id="button-bg8"></div>
+								<div id="button-bg9"></div>
+								<div id="button-bg10"></div>
+								<div id="button-bg11"></div>
+								<div id="button-bg12"></div>
+								<div id="button-bg13"></div>
+							</li>
+						</ul>
+						<a href="#" id="drop1" data-toggle="dropdown" class="dropdown-toggle">
+							<span class="icon-gear" style="font-size:20px;"></span>
+						</a>
+					</li>
+				</ul>
+			</div> -->
+		</div>
+	</footer>
+	<div class="foot">
+		<ol class="clearfix">
+			<li class="logins3"><span class="fontawesome-user"></span></li>
+			<li class="logins2"><span class="entypo-info-circled"></span></li>
+			<li class="searchtwo_1"><span class="fontawesome-search"></span></li>
+		</ol>
+	</div>
+	<div class="sb-slidebar sb-left">
+		<div class="left-wrapper">
+			<ul id="category_index">
+				<li class="werth"><img src="img/nav_s_06.png" title="实况" /><p class="li_text">实况</p></li>
+				<li class="werth" onclick="createweibo()"><img src="img/nav_fa_05.png" title="位博" /><p class="li_text">位博</p></li>
+				<li class="werth"><img src="img/nav_2_04.png" title="时政" /><p class="li_text">时政</p></li>
+				<li class="maphot"><img src="img/qq_06.png" title="POI分布" /><p class="li_text">POI分布</p></li>
+				<!-- <li class="li1" onclick=""><img src="img/nav_2_04.png" title="时政" /></li>
+				<li onclick=""><img src="img/nav_fa_05.png" title="微博" /></li>
+				<li onclick=""><img src="img/rk_03.png" title="人口分布" /></li>
+				<li onclick=""><img src="img/fr_03.png" title="法人分布" /></li>
+				<li onclick=""><img src="img/gw_03.png" title="管网" /></li>
+				<li onclick=""><img src="img/jt_03.png" title="交通" /></li>
+				<li onclick=""><img src="img/dm_03.png" title="地名" /></li>
+				<li onclick=""><img src="img/dx_03.png" title="地形" /></li>
+				<li onclick="selectmodel()"><img src="img/003_08.png" title="选择查询" /></li>
+				<li onclick="distance()"><img src="img/005_12.png" title="距离测量" /></li>
+				<li onclick="area()"><img src="img/004_10.png" title="面积测量" /></li>  
+				<li onclick="clearAll()" class="last"><img src="img/006_14.png" title="清除" /></li> -->
+			</ul>
+			<!--移动的滑动-->
+			<div class="move-bg"></div>
+			<!--移动的滑动 end-->
+		</div>
+	</div>
+	<div class="sb-right" style="height: 100%; top: 0;">
+		<div class="right-wrapper">
+
+		</div>
+	</div>
+	<!-- 登录注册开始 -->
+	<div class="nor">
+		<div class="titled clearfix">
+			<ul class="clearfix">
+				<li class="e" id="tab1">登录</li>
+				<li>注册</li>
+			</ul>
+			<span class="entypo-cancel close"></span>
+		</div>
+		<div class="contents">
+			<form id="subdeng" class="con" method="get" action="">
+				<p>
+					<label>账号：</label>
+					<input class="animated inmap" type="text" name="logName" id="logName_d" placeholder="请输入您的账号" required />
+				</p>
+				<p>
+					<label>密码：</label>
+					<input class="animated inmap" type="password" name="logPwd" id="logPwd_d" placeholder="请输入您的密码" required />
+				</p>
+				<p>
+					<label>验证码：</label>
+					<input class="animated inmap" type="text" name="imageCode" id="imageCode" placeholder="请输入验证码" style="width: 175px"  required />
+					<input type="text" name="image" onclick="createCode()" readonly="readonly" id="checkCode" class="code" style="width:80px;border: 1px solid #ccc;height: 30px;border-radius: 3px;" />
+				</p>
+				<p>
+					<input id="subdeng1" class="input_sub" type="submit" readonly value="登录">
+				</p>
+			</form>
+			<form id="subzhuce" class="con">
+				<p>
+					<label>账号：</label>
+					<input class="animated inmap" type="text" name="logName" id="logName" placeholder="请输入您的账号" onBlur="yzname()" required />
+				</p>
+				<p>
+					<label>密码：</label>
+					<input class="animated inmap" type="password" name="logPwd" id="logPwd" placeholder="请设置您的密码"
+					value="" required />
+				</p>
+				<p class="p_password">
+					<label>确认密码：</label>
+					<input class="animated inmap" type="password" name="checkpwd" id="checkpwd" placeholder="请再次输入密码" required />
+				</p>
+				<p class="p_xieyi">
+					<input class="input_xieyi" type="checkbox" name="check" id="xieyi" checked />
+					<label for="xieyi" class="xieyi">阅读并接受</label>
+					<a class="xieyi" href="protocal.html">《Smart 北京用户协议》</a>
+				</p>
+				<p>
+					<input id="subzhuce1" class="input_sub" type="submit" readonly value="注册">
+				</p>
+			</form>
+		</div>
+	</div>
+	<div class="md-modal md-effect-1" id="modal-1">
+		<div class="md-content">
+			<iframe id="framdetail" src="" frameborder="false" width="100%" height="472"></iframe>
+			<span class="md-close1"></span>
+		</div>
+	</div>
+	<div class="md-modal md-effect-19" id="modal-19">
+		<div class="md-content">
+			<iframe id="framvideo" src="" frameborder="false" scrolling="no" width="100%" height="335"></iframe>				
+			<span class="md-close md-close19"></span>
+		</div>
+	</div>
+	<div class="md-modal md-effect-17" id="modal-17">
+		<div class="md-content">
+			<iframe id="framnet" src="" frameborder="false" width="100%" height="700px"></iframe>				
+			<span class="md-close md-close17"></span>
+		</div>
+	</div>
+	<div class="md-overlay">
+	</div>
+	<!-- 登录注册结束 -->
+	<div class="checkboxe">
+		<form class="viewbc">
+			<!--  <p class="viewe">影像背景</p> -->
+			<label>
+				<span>影像底图</span><input id="tiandi" type="checkbox" value="" />
+			</label>
+			<label>
+				<span>矢量注记</span><input id="biaozhu" type="checkbox" value="" />
+			</label>
+			<label>
+				<span>三维模型</span><input id="yingxiang" type="checkbox" value="" />
+			</label>
+		</form>
+		<!-- <form class="thds">
+			<p class="viewe">三维模型</p>
+			<label>
+				<span>朝阳区</span><input id="wer1" type="checkbox" value="" />
+			</label>
+			<label>
+				<span>国&nbsp;&nbsp;&nbsp;贸</span><input id="wer2" type="checkbox" value="" />
+			</label>
+			<label>
+				<span>丰台区</span><input id="wer3" type="checkbox" value="" />
+			</label>
+			<label>
+				<span>故&nbsp;&nbsp;&nbsp;宫</span><input id="wer4" type="checkbox" value="" />
+			</label>
+			<label>
+				<span>地&nbsp;&nbsp;&nbsp;坛</span><input id="wer5" type="checkbox" value="" />
+			</label>
+			<label>
+				<span>北新桥</span><input id="wer6" type="checkbox" value="" />
+			</label>
+			<label>
+				<span>东城区</span><input id="wer7" type="checkbox" value="" />
+			</label>
+			<label>
+				<span>崇文门</span><input id="wer8" type="checkbox" value="" />
+			</label>
+			<label>
+				<span>天坛周边</span><input id="wer9" type="checkbox" value="" />
+			</label>
+			<label>
+				<span>永定门</span><input id="wer10" type="checkbox" value="" />
+			</label>
+		</form> -->
+	</div>
+	<ul class="yjhy">
+		<li class="live" id="live">
+			<iframe src="live.html" frameborder="false" scrolling="no" style="border: none;" width="100%" height="100%" allowtransparency="true"></iframe>
+		</li>
+		<li class="live" id="blog">
+			<iframe src="blog.html" frameborder="false" scrolling="no" style="border: none;" width="100%" height="100%"></iframe>
+		</li>
+		<li class="live" id="gov">
+			<iframe src="gov.html" frameborder="false" style="border: none;" width="100%" height="100%"></iframe>
+		</li>
+		<span class="close_live"></span>
+	</ul>
+	<script src="js/app.js"></script>
+	<script src="js/preloader.js"></script>
+	<script src="js/load.js"></script>
+	<script src="js/map.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/bootstrap-switch.min.js"></script>
+	<script src="js/validate/jquery.validate.min.js"></script>
+	<script src="js/valid.js"></script>
+	<script src="js/jquery.rotate.min.js"></script>
+	<script src="js/circle.js"></script>
+	<script src="js/jquery.nicescroll.js"></script>
+	<script src="js/search.js"></script>
+	<script src="js/jqPaginator.js"></script>
+	<!-- <script src="js/modalEffects.js"></script> -->
+	<script src="js/login.js"></script>
+	<script src="js/jquery.movebg.js"></script>
+	<script>
+		$(function () {
+			//滚动条
+			$("#searchResult,#modal-1").niceScroll({
+				cursorcolor: "#999",
+				cursoropacitymax: 1,
+				touchbehavior: false,
+				cursorwidth: "5px",
+				cursorborder: "0",
+				cursorborderradius: "5px"
+			});
+
+			//左侧导航栏滑动
+			$(".left-wrapper").movebg({
+				width: 90/*滑块的大小*/,
+				extra: 0/*额外反弹的距离*/,
+				speed: 100/*滑块移动的速度*/,
+				rebound_speed: 400/*滑块反弹的速度*/
+			});
+		})
+		initmap(Cesium);
+	</script>
+	<script src="js/convertor.js"></script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+@charset "UTF-8";
+
+/**
+ * 
+ * @authors Your Name (you@example.org)
+ * @date    2017-04-06 10:59:49
+ * @version $Id$
+ */
+
+body {
+    overflow: auto!important;
+    color: #000!important;
+    background: none;
+}
+.clearfix>li{
+	float:left;
+}
+.shadow {
+    background-color: #fff;
+    box-shadow: 0 1px 1px #ccc;
+}
+
+.f {
+    color: #000!important;
+}
+
+header {
+    height: 400px;
+}
+
+.top_bar {
+    position: fixed;
+    width: 100%;
+    min-width: 640px;
+    z-index:1;
+}
+
+.left_logo {
+    width: 155px;
+    line-height: 70px;
+    float: left;
+    margin-left: 50px;
+}
+
+.left_logo>img {
+    vertical-align: middle;
+}
+
+.ul_bar {
+    float: right;
+    margin-right: 50px;
+}
+
+.ul_bar>li {
+    float: right;
+    height: 70px;
+    position: relative;
+}
+
+.ul_bar>li:nth-child(1) {
+    line-height: 70px;
+    margin-left: 30px;
+}
+
+.ul_bar>li:nth-child(1)>img {
+    vertical-align: middle;
+}
+
+.ul_bar>li>a {
+    font-size: 16px;
+    color: #fff;
+    line-height: 70px;
+    padding: 22px 30px;
+    /*  -webkit-transition: background-color 0.5s linear;
+	-o-transition: background-color 0.5s linear;
+	transition: background-color 0.5s linear;
+	-webkit-transition: color 0.5s linear;
+	-o-transition: color 0.5s linear;
+	transition: color 0.5s linear;*/
+}
+
+.ul_bar>li>a:hover {
+    /*background-color:#00080b;*/
+    color: #2C98D6;
+}
+
+.Solution_list {
+    display: none;
+    background-color: #fff;
+    position: relative;
+    top: 0;
+}
+
+.Solution_list>li {
+    text-align: center;
+    line-height: 40px;
+    border-bottom: 1px solid #eee;
+    margin: 0 10px;
+}
+
+.Solution_list>li>a {
+    padding: 10px 20px;
+}
+
+.Solution_list>li:hover {
+    border-bottom: 1px solid blue;
+}
+
+.Solution_list>li:hover a {
+    color: blue;
+}
+
+
+/*底部*/
+
+#company-box {
+    background-color: #333;
+    padding: 5px 0;
+}
+
+#company-box>img {
+    vertical-align: middle;
+    padding: 0 10px 4px 10px;
+}
+
+.drawing {
+    color: #ddd;
+}

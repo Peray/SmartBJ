@@ -1,0 +1,191 @@
+@charset "UTF-8";
+#searchResult {
+    display: none;
+    position: absolute;
+    top: 90px;
+    left: 10px;
+    z-index: 3;
+    width: 340px;
+    min-height: 50px;
+    height: 600px;
+    margin-top: 2px;
+    background-color: rgba(255, 255, 255, .9);
+    color: #000;
+    font-family: "微软雅黑";
+}
+
+#itemContainer {
+    margin: 0;
+    padding: 0;
+}
+
+.list-li {
+    padding: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.list-li:hover {
+    background-color: #fff;
+}
+
+
+/*.list-li:hover .letter{
+	background:url(../img/lable2.png) center center no-repeat;
+}*/
+
+
+/*.list-li:hover .text{
+	color: #12A6DF;
+	text-decoration: underline;
+}*/
+
+.letter {
+    text-align: center;
+    color: #fff;
+    display: inline-block;
+    width: 18px;
+    height: 28px;
+    margin-right: 6px;
+    padding-top: 3px;
+    background: url(../img/lable1.png) center center no-repeat;
+}
+
+.text {
+    font-size: 14px;
+    font-weight: bold;
+    color: #12A6DF;
+    margin-left: 10px;
+}
+
+.adr {
+    font-size: 12px;
+    margin-left: 35px;
+    height: 18px;
+    line-height: 18px;
+    margin-bottom: 0;
+}
+
+.text,
+.adr {
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+p.tag {
+    font-weight: bold;
+}
+
+.adr-left {
+    float: left;
+}
+
+.aside_img {
+    float: right;
+}
+
+.aside_img>img {
+    width: 60px;
+    height: 60px;
+    margin: 5px 10px 0 0;
+}
+
+.clearfix:after {
+    content: "";
+    display: block;
+    clear: both;
+    height: 0;
+}
+
+.clearfix {
+    zoom: 1;
+}
+
+.holder {
+    margin: 35px 0;
+    text-align: center;
+}
+
+.holder a {
+    display: inline-block;
+    font-size: 12px;
+    cursor: pointer;
+    margin: 0 5px;
+    color: #fff;
+    padding: 3px 5px;
+    border: 1px solid rgba(0, 0, 0, 0);
+}
+
+.holder a:hover {
+    background-color: none;
+    color: #fff;
+    border: 1px solid #12A6DF;
+}
+
+.holder a.jp-previous {
+    margin-right: 15px;
+}
+
+.holder a.jp-next {
+    margin-left: 15px;
+}
+
+.holder a.jp-current,
+a.jp-current:hover {
+    color: #fff;
+    border: 1px solid #12A6DF;
+}
+
+.holder a.jp-disabled,
+a.jp-disabled:hover {
+    color: #bbb;
+    border: none;
+}
+
+.holder a.jp-current,
+a.jp-current:hover,
+.holder a.jp-disabled,
+a.jp-disabled:hover {
+    cursor: default;
+    background: none;
+}
+
+.holder span {
+    margin: 0 5px;
+}
+
+.footPage {
+    padding: 10px;
+}
+
+.dataTables_info {
+    height: 30px;
+    line-height: 30px;
+}
+
+.search_load {
+    display: none;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -50px;
+    margin-top: -10px;
+}
+
+#getdown {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    height: 50px;
+    z-index: 45;
+    background-color: #F8F8F8;
+    display: none;
+}
+
+#getdown>img {
+    height: 50px;
+}

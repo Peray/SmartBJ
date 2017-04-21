@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		article{
+			font-family: "微软雅黑";
+			font-size: 14px;
+		}
+		article>img{
+			display: block;
+		}
+		.title{
+			margin:4px 0 5px 0;
+			text-indent: 1em;
+		}
+		.time{
+			position: absolute;
+			top: 299px;
+			left: 0;
+			height: 30px;
+			line-height: 30px;
+			color: #fff;
+		}
+		.time>span{
+			margin-left: 10px;
+		}
+	</style>
+</head>
+<body>
+	<article>
+		<p class="title">实时监控视频</p>
+		<img src="img/sp_03.png" alt="" />
+		<p class="time"><span></span></p>
+	</article>
+	<script src="js/jquery.min.js"></script>
+	<script>
+		showTime();
+		function showTime() {
+			var curTime = new Date();
+			year = curTime.getFullYear();
+			month = curTime.getMonth()+1;
+			day = curTime.getDate();
+			time = curTime.getTime(); 
+			hours = curTime.getHours(); 
+			minutes = curTime.getMinutes();
+			seconds = curTime.getSeconds(); 
+			function Appendzero(obj){
+				if(obj<10){
+					return "0"+obj;
+				}else{
+					return obj;
+				}
+			}
+			$("span").text(year+"/"+month+"/"+day+"  "+hours+":"+Appendzero(minutes)+":"+Appendzero(seconds));
+			setTimeout("showTime()", 1000);
+		}
+	</script>
+</body>
+</html>

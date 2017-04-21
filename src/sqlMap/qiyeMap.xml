@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="qiyeMap">
+    
+    <typeAlias alias="qiyeUser" type="com.eastdawn.po.QiyeUser"/>
+    
+    <resultMap id="qiyeUser-resultMap" class="qiyeUser" >
+    	<result property="qiyeId" column="qiye_Id"/>
+		<result property="qiyeName" column="qiye_Name"/>
+		<result property="lxrName" column="lxr_Name"/>
+		<result property="telephone" column="telephone"/>
+		
+		<result property="email" column="email"/>
+		<result property="websiteAdd" column="website_Add"/>
+		<result property="faren" column="faren"/>
+		<result property="zzImg" column="zz_Img"/>
+		
+		<result property="sqTime" column="sq_Time"/>
+		<result property="status" column="status"/>
+		<result property="tgTime" column="tg_Time"/>
+		<result property="userId" column="user_Id"/>
+    </resultMap>
+    
+    <select id="getQiyeById"  resultMap="qiyeUser-resultMap" parameterClass="Long">
+  		select * from qiyetab where qiye_Id=#qiyeId#
+ 	</select>
+    
+    <select id="queryQiyeByPage"  resultMap="qiyeUser-resultMap" parameterClass="java.util.HashMap">
+ 				select t.* from qiyetab t 
+ 			<dynamic prepend="where">
+  				1=1  
+  			<isNotEmpty property="qiyeName"> 
+  				and qiye_Name = #qiyeName#
+  			</isNotEmpty>
+  			<isNotEmpty property="qiyeId"> 
+  				and qiye_Id = #qiyeId#
+  			</isNotEmpty>
+  			<isNotEmpty property="userId"> 
+  				and user_Id = #userId#
+  			</isNotEmpty>
+  			<isNotEmpty property="status"> 
+  				and status = #status#
+  			</isNotEmpty>
+        </dynamic>
+         order by t.qiye_Id asc
+     </select>	
+     
+ 	 <!-- 企业添加 -->
+     <insert id="add" parameterClass="qiyeUser"> 
+	 	insert into qiyetab(qiye_Name,lxr_Name,telephone,email,website_Add,faren,zz_Img,sq_Time,status,user_Id) values (#qiyeName#,#lxrName#,#telephone#,#email#,#websiteAdd#,#faren#,#zzImg#,#sqTime#,#status#,#userId#)
+ 	 </insert>
+ 	 
+ 	 <!-- 类型删除 -->
+ 	 <delete id="deleteUpdateById" parameterClass="Long">
+	 	update qiyetab set status=#status# 
+	  	where qiye_Id=#qiyeId#
+ 	 </delete>
+ 	<!-- 更新 -->
+	 <update id="updateById" parameterClass="qiyeUser">
+	  	update user set qiye_Name = #qiyeName#,lxr_Name=#lxrName#,telephone = #telephone#,email = #email#,website_Add = #websiteAdd#,faren = #faren#,zz_Img = #zzImg#
+	  	where qiye_Id=#qiyeId#
+	 </update>
+</sqlMap>

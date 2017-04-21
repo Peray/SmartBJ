@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+	<script src="http://api.map.baidu.com/api?v=1.4&ak=8Lbt0XSuaSIK4ZRXB3iex7aUW4cM1Mi5"></script>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		body{
+			font-family: "微软雅黑";
+			font-size: 14px;
+			/*background:#fff;*/
+			overflow: hidden;
+		}
+		.clearfix:after{
+			content: "";
+			display: block;
+			clear: both;
+			height: 0;
+		}
+		.clearfix{
+			zoom: 1;
+		}
+		ul{
+			list-style: none;
+			height: auto;
+		}
+		#baidumap{
+			width: 290px;
+			height: 250px;
+			margin: 55px auto 5px;
+			border: 1px solid #ccc;
+			box-shadow: 0 1px 1px #ccc;
+		}
+		 .anchorBL{
+	            display: none;
+	        }
+	      .BMap_cpyCtrl{
+	          display: none;
+	      }
+	      .blog_title{
+			position: fixed;
+			top: 0;
+			left: 0;
+			z-index: 1;
+			width: 100%;
+			color: #89D5C7;
+			text-indent: 40px;
+			padding: 15px 0;
+			background: url(img/ic2_03.png) no-repeat 10px 15px rgba(235,235,235,1);
+			font-size: 16px;
+		}
+		#blog_message{
+			width: 100%;
+		}
+		.blog_menu{
+			width: 70px;
+			float: left;
+			border: 1px dotted #ccc; 
+			cursor: pointer;
+			box-sizing: border-box;
+		}
+		.blog_menu>li>span{
+			padding: 5px 10px;
+			border-bottom: 1px dotted #ccc;
+			font-size: 14px;
+			display: inline-block;
+		}
+		.blog_menu>li{
+			background-color: #fff;
+			color: #000;
+		}
+		.blog_content{
+			float:left;
+			width: 230px;
+		}
+		.content{
+			display: none;
+			padding: 0 5px 5px 5px;
+		}
+		.show{
+			display: block;
+		}
+		.blog_show{
+			background-color:#555!important;
+			color:#fff!important;
+		}
+		.blog_list{
+			padding: 5px;
+			margin-top: 5px;
+			cursor: pointer;
+			background:#fff;
+			box-shadow: 1px 1px 1px #ccc;
+		}
+		.blog_caption{
+			font-weight: bold;
+		}
+		.blog_caption:hover{
+			color: #12A6DF;
+		}
+		.blog_sub{
+			font-size: 10px;
+			text-align: right;
+			color: #808080;
+			margin:5px 0;
+		}
+		.blog_sub1{
+			margin-right: 20px;
+			background:url(img/cy_21.png) no-repeat center left;
+			padding-left: 2em;
+		}
+	</style>
+</head>
+<body>
+	<div id="baidumap"></div>
+	<p class="blog_title">位博信息</p>
+	<div id="blog_message" class="clearfix">
+		<ul class="blog_menu">
+			<li class="blog_show"><span>东城区</span></li>
+			<li><span>西城区</span></li>
+			<li><span>朝阳区</span></li>
+			<li><span>丰台区</span></li>
+			<li><span>石景山</span></li>
+			<li><span>海淀区</span></li>
+			<li><span>门头沟</span></li>
+			<li><span>房山区</span></li>
+			<li><span>通州区</span></li>
+			<li><span>顺义区</span></li>
+			<li><span>昌平区</span></li>
+			<li><span>大兴区</span></li>
+			<li><span>怀柔区</span></li>
+			<li><span>平谷区</span></li>
+			<li><span>密云县</span></li>
+			<li><span>延庆县</span></li>
+		</ul>
+		<div class="blog_content">
+			<div class="content show">
+				<div class="blog_list" onclick="window.parent.frames.flyto(116.39134676607188,39.90737234231261,1000,-90)">
+					<span class="blog_name">天安门</span>
+					<p class="blog_caption">抗战胜利70周年大阅兵</p>
+					<p class="blog_sub"><span class="blog_sub1">187</span><span>2016/12/15</span></p>
+				</div>
+				<div class="blog_list" onclick="window.parent.frames.flyto(116.40703065939054, 39.94539556518074,1000,-90)">
+					<span class="blog_name">国子监</span>
+					<p class="blog_caption">明朝二品官员一年俸禄买不到“大学入学指标”</p>
+					<p class="blog_sub"><span class="blog_sub1">345</span><span>2016/12/14</span></p>
+				</div>
+				<div class="blog_list" onclick="window.parent.frames.flyto(116.40703065939054, 39.94539556518074,1000,-90)">
+					<span class="blog_name">国子监</span>
+					<p class="blog_caption">国子监里的古槐</p>
+					<p class="blog_sub"><span class="blog_sub1">2345</span><span>2016/12/10</span></p>
+				</div>
+				<div class="blog_list" onclick="window.parent.frames.flyto(116.39134676607188,39.90737234231261,1000,-90)">
+					<span class="blog_name">天安门</span>
+					<p class="blog_caption">北京天安门花坛摆放至10月中旬</p>
+					<p class="blog_sub"><span class="blog_sub1">575</span><span>2016/10/9</span></p>
+				</div>
+				<div class="blog_list" onclick="window.parent.frames.flyto(116.40703065939054, 39.94539556518074,1000,-90)">
+					<span class="blog_name">国子监</span>
+					<p class="blog_caption">杨少华书画展在北京·孔庙和国子监博物馆举行</p>
+					<p class="blog_sub"><span class="blog_sub1">387</span><span>2016/10/8</span></p>
+				</div>
+				<div class="blog_list" onclick="window.parent.frames.flyto(116.39134676607188,39.90737234231261,1000,-90)">
+					<span class="blog_name">天安门</span>
+					<p class="blog_caption">孙中山巨幅画像亮相天安门广场 作者为创作受伤</p>
+					<p class="blog_sub"><span class="blog_sub1">485</span><span>2016/10/6</span></p>
+				</div>
+				<div class="blog_list" onclick="window.parent.frames.flyto(116.39134676607188,39.90737234231261,1000,-90)">
+					<span class="blog_name">天安门</span>
+					<p class="blog_caption">首都武警新兵观看天安门升旗接受爱国主义教育</p>
+					<p class="blog_sub"><span class="blog_sub1">1593</span><span>2016/10/3</span></p>
+				</div>
+				<div class="blog_list" onclick="window.parent.frames.flyto(116.39134676607188,39.90737234231261,1000,-90)">
+					<span class="blog_name">天安门</span>
+					<p class="blog_caption">天安门广场举行国庆升旗仪式 超过10万人现场观看</p>
+					<p class="blog_sub"><span class="blog_sub1">405</span><span>2016/10/1</span></p>
+				</div>
+			</div>
+			<div class="content">无数据</div>
+			<div class="content">无数据</div>
+			<div class="content">无数据</div>
+			<div class="content">无数据</div>
+			<div class="content">无数据</div>
+			<div class="content">无数据</div>
+			<div class="content">无数据</div>
+			<div class="content">无数据</div>
+			<div class="content">无数据</div>
+			<div class="content">无数据</div>
+			<div class="content">无数据</div>
+			<div class="content">无数据</div>
+			<div class="content">无数据</div>
+			<div class="content">无数据</div>
+			<div class="content">无数据</div>
+		</div>
+	</div>
+	<script src="js/jquery.min.js"></script>
+	<script src="http://api.map.baidu.com/library/Heatmap/2.0/src/Heatmap_min.js"></script>
+	<script src="js/heatmap.js"></script>
+	<script src="js/jquery.nicescroll.js"></script>
+	<script>
+		$(function(){
+			var blog_h = $("#blog", window.parent.document).height()-303;
+			$("#blog_message").height(blog_h);
+
+			$("#blog_message").niceScroll({
+				cursorcolor: "#999",
+				cursoropacitymax: 1,
+				touchbehavior: false,
+				cursorwidth: "5px",
+				cursorborder: "0",
+				cursorborderradius: "5px"
+			});
+
+			//切换
+			$(".blog_menu>li").click(function(){
+				var index = $(this).index();
+				$(".blog_menu>li").removeClass('blog_show');
+				$(".blog_menu>li").eq(index).addClass('blog_show');
+				$(".content").removeClass('show');
+				$(".content").eq(index).addClass('show');
+			})
+
+		})
+	</script>
+</body>
+</html>

@@ -1,0 +1,187 @@
+@charset "UTF-8";
+
+/**
+ * 
+ * @authors Your Name (you@example.org)
+ * @date    2017-03-28 14:58:28
+ * @version $Id$
+ */
+
+header {
+    background: url(../img/fk_bg_03.png) no-repeat center;
+}
+
+/*.nav {
+    height: 40px;
+    line-height: 40px;
+    background-color: #e83636;
+    padding-left: 50px;
+    color: #fff;
+    font-size: 14px;
+}*/
+
+form {
+    width: 630px;
+    margin: 0 auto;
+    padding: 50px 0 100px;
+    color: #575757;
+    font-size: 16px;
+}
+
+form>dl {
+    color: #959595;
+    margin-bottom: 30px;
+}
+
+dt.title {
+    line-height: 40px;
+}
+
+dt.content {
+    padding-left: 15px;
+}
+
+.dt_icon {
+    color: #e83636;
+}
+
+.dt_text {
+    font-size: 12px;
+}
+
+.content>textarea {
+    border: 1px solid #959595;
+    border-radius: 3px;
+    width: 590px;
+    resize: none;
+    text-indent: 10px;
+    line-height: 15px;
+    padding: 2px;
+    font-size: 14px;
+    color: #959595;
+}
+
+.content>input[type=text] {
+    border: 1px solid #959595;
+    border-radius: 3px;
+    width: 590px;
+    height: 30px;
+    padding: 0 2px;
+}
+
+
+/*上传文件*/
+
+.upfile {
+    position: relative;
+    width: 140px;
+    height: 128px;
+}
+
+.upfile>span,
+.upfile>input,
+.newUpload>span,
+.newUpload>input {
+    position: absolute;
+    top: 0;
+    left: 6px;
+    width: 128px;
+    height: 128px;
+    cursor: pointer;
+}
+
+.upfile>input,
+.newUpload>input {
+    opacity: 0;
+}
+
+.newUpload {
+    position: relative;
+    width: 140px;
+    height: 128px;
+    float: left;
+}
+
+.upfile>p,
+.newUpload>p {
+    position: absolute;
+    top: 128px;
+    left: 0;
+    text-align: center;
+}
+
+.imgBox {
+	position:relative;
+    width: 128px;
+    margin: 10px;
+    float: left;
+}
+
+.imgBox:hover .del{
+	display:block;
+}
+
+.bg {
+    width: 128px;
+    height: 128px;
+    border: 1px solid #eee;
+}
+
+.del{
+	display:none;
+	position:absolute;
+	top:0;
+	right:0;
+	cursor:pointer;
+	width:108px;
+	text-align:right;
+	padding:1px 10px;
+	font-size:12px;
+	color:#ccc;
+	background-color:rgba(0,0,0,.5);
+}
+	
+
+.upfile>label {
+    position: absolute;
+    top: 150px;
+    left: 6px;
+    width: 128px;
+    padding: 0;
+    text-align: center;
+}
+
+dt>input[type=submit] {
+    display: block;
+    margin: 15px auto;
+    width: 200px;
+    height: 40px;
+    background-color: #fff;
+    border-radius: 3px;
+    border: 1px solid #29d;
+    font-size: 18px;
+    color: #29d;
+    cursor: pointer;
+    -webkit-transition: background-color 0.5s linear;
+    -o-transition: background-color 0.5s linear;
+    transition: background-color 0.5s linear;
+    -webkit-transition: color 0.5s linear;
+    -o-transition: color 0.5s linear;
+    transition: color 0.5s linear;
+}
+
+dt>input[type=submit]:hover {
+    background-color: #29d;
+    color: #fff;
+}
+
+footer {
+    background-color: #EEF3FA;
+    color: #959595;
+}
+
+footer>p {
+    text-align: center;
+    color: #6c6c6d;
+    padding: 30px 0;
+}

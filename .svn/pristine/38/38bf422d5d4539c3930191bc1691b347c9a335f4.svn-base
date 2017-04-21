@@ -1,0 +1,133 @@
+@charset "UTF-8";
+
+/**
+ * 
+ * @authors Your Name (you@example.org)
+ * @date    2017-03-27 17:24:44
+ * @version $Id$
+ */
+
+header {
+    background: url(../img/sq_bg_02.png) no-repeat center;
+}
+
+.flow {
+    position: absolute;
+    top: 60px;
+    width: 100%;
+}
+
+.flow_img {
+    width: 374px;
+    height: 62px;
+    line-height: 45px;
+    font-size: 20px;
+    letter-spacing: .3em;
+    text-align: center;
+    margin: 50px auto 0;
+    background: url(../img/liucheng/03_03.png) no-repeat;
+    color: #DC3022;
+}
+
+.flow_span {
+    width: 870px;
+    text-align: center;
+    margin: 50px auto 0;
+}
+
+.flow_span>span {
+    float: left;
+}
+
+.flow_span>span:nth-child(odd) {
+    display: inline-block;
+    width: 110px;
+    height: 110px;
+}
+
+.flow_text {
+    color: #fff;
+    font-size: 18px;
+}
+
+.flow_span>span:nth-child(even) {
+    display: inline-block;
+    width: 80px;
+    height: 110px;
+    line-height: 110px;
+    text-align: center;
+}
+
+.flow_span>span:nth-child(even)>img {
+    vertical-align: middle;
+}
+
+
+/*.nav{
+    height:40px;
+    line-height: 40px;
+    background-color:#e83636;
+    padding-left: 50px;
+    color: #fff;
+    font-size: 14px;
+}*/
+
+form {
+    width: 700px;
+    margin: 0 auto;
+    padding: 50px 0 100px;
+    color: #575757;
+    font-size: 16px;
+}
+form>table{
+	margin: auto;
+}
+tr {
+    height: 65px;
+}
+
+tr>td:nth-child(1) {
+    text-align: right;
+}
+
+.input_style {
+    border: 1px solid #959595;
+    width: 300px;
+    height: 35px;
+    border-radius: 3px;
+    padding-left: 10px;
+}
+
+tr>td:nth-child(3) {
+    color: #e83636;
+}
+
+.btn_application>input[type=submit] {
+    display: block;
+    margin: 15px auto;
+    width: 200px;
+    height: 40px;
+    border: 1px solid #29d;
+    font-size: 18px;
+    color: #29d;
+    background-color: #fff;
+    cursor: pointer;
+    -webkit-transition: background-color 0.5s linear;
+    -o-transition: background-color 0.5s linear;
+    transition: background-color 0.5s linear;
+    -webkit-transition: color 0.5s linear;
+    -o-transition: color 0.5s linear;
+    transition: color 0.5s linear;
+}
+
+.btn_application>input[type=submit]:hover {
+    background-color: #29d;
+    color: #fff;
+}
+
+tr.success {
+    height: auto;
+    text-align: center;
+    color: #29d;
+    font-size: 14px;
+}
