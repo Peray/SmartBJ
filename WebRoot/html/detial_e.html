@@ -4,6 +4,7 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
 	<link rel="stylesheet" type="text/css" href="css/history.css">
+	<script src="http://api.map.baidu.com/api?v=2.0&ak=NFzwQSR7FlNsPgGXNQFBM9XwV4rrH1Uy"></script>
 	<style type="text/css">
 		* {
 			margin: 0;
@@ -73,16 +74,14 @@
 			overflow: hidden;
 		}
 		
-		.details_img {
-			position:absolute;
+		.details_img{
+			position: absolute;
 			bottom: 0;
-			background-color: #e0e0e0;
+			width:100%;
 		}
-		
-		.details_img>img {
-			width: 428px;
+		#viewerin{
+			width: 100%;
 			height: 160px;
-			padding: 22px 18px;
 		}
 		
 		.liright>p>span {
@@ -108,6 +107,9 @@
 		.timeblock .numfo {
 			background-position: 0px -144px;
 		}
+		.pano_pc_indoor_exit~div>div{  
+			display:none;  
+		} 
 	</style>
 </head>
 
@@ -126,7 +128,8 @@
 					明朝时期行使双京制，在南京和北京分别都设有国子监，设在南京的国子监被称为“南监”或“南雍”，而设在北京的国子监则被称为“北监”或“北雍”。南京国子监始建于东吴永安元年（公元258年），到明永乐年间，规模宏大，延袤十里，灯火相辉，盛况空前，当时邻邦高丽、日本、琉球、暹罗等国“向慕文教”，不断派留学生到南京国子监学习。北京国子监始建于元朝大德十年（公元1306年），是中国元、明、清三代国家管理教育的最高行政机关和国家设立的最高学府。</span>
 				</div>
 				<div class="details_img">
-					<img src="img/tiananmen/guozijian.jpg" alt="国子监" />
+					<div id="viewerin"></div>
+					<!-- <img src="img/tiananmen/guozijian.jpg" alt="国子监" /> -->
 				</div>
 			</div>
 			<div class="ul-content" id="ul_scroll">
@@ -353,6 +356,7 @@
 		<script src="js/jquery.mousewheel.js"></script>
 		<script src="js/jquery.easing.min.js"></script>
 		<script src="js/history.js"></script>
+		<script src="js/convertor.js"></script>
 		<script src="js/detial.js"></script>
 	</body>
 

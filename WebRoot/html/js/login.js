@@ -1,111 +1,105 @@
-﻿// $(document).ready(function () {
-// 	var username = getCookie("username");
-// 	var password = getCookie("password");
-// 	if (username == "edit" && password == "eastdawn010") {
-// 		$("#usert").hide();
-// 		$("#loginuser").show();
-// 		$("#loginuser").html("<img src='img/user.png' />");
-// 		if (window.location.href.indexOf('map.html') > 0) {
-// 			$(".left-direction").addClass('vis-show');
-// 		}
-// 	}
-// });
+﻿
+//切换效果
+$(".titled>ul>li").click(function () {
+	var index = $(this).index();
+	$(this).addClass('e').siblings().removeClass('e');
+	$(".con").eq(index).show().siblings().hide();
+})
 
-// function login() {
-// 	var username = $("#users").val(); ;
-// 	var password = $("#password").val();
-// 	if (username == "edit" && password == "eastdawn010") {
-// 		setCookie("username", username);
-// 		setCookie("password", password);
-// 		$("#usert").hide();
-// 		$("#loginuser").show();
-// 		$("#loginuser").html("<img src='img/user.png' />")
-// 		if (window.location.href.indexOf('map.html') > 0) {
-// 			$(".left-direction").addClass('vis-show');
-// 		}
-// 	}
-// }
-
-// //写cookies
-// function setCookie(name, value) {
-// 	var Days = 7;
-// 	var exp = new Date();
-// 	exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
-// 	document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString();
-// }
-
-// //删除cookie中所有定变量函数    
-// function delAllCookie() {
-// 	var data = document.cookie;
-// 	var dataArray = data.split("; ");
-// 	for (var i = 0; i < dataArray.length; i++) {
-// 		var varName = dataArray[i].split("=");
-// 		document.cookie = varName[0] + "=''";
-// 	}
-
-// }
-
-// //读取cookies
-// function getCookie(name) {
-// 	var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
-// 	if (arr = document.cookie.match(reg))
-// 		return unescape(arr[2]);
-// 	else
-// 		return null;
-// }
+//验证协议是否选中
+$("#xieyi").click(function(event) {
+	if($("#xieyi").is(":checked")){
+		$("#subzhuce1").removeAttr("disabled").css("background-color","#2795dc");
+		
+	}else{
+		$("#subzhuce1").attr("disabled","disabled").css("background-color","#ccc");
+	}
+});
 
 
-//随机数
-function randomNum(minNum,maxNum){ 
-        switch(arguments.length){ 
-            case 1: 
-                    return parseInt(Math.random()*minNum+1); 
-            break; 
-            case 2: 
-                return parseInt(Math.random()*(maxNum-minNum+1)+minNum); 
-            break; 
-            default: 
-                return 0; 
-            break; 
-        } 
-} 
-
-function loginsuccess(){
-	var num = randomNum(0,2);
-	var arrImg = ['user.png','tx_03.png','toux2_14.png'];
-	var n = arrImg[num];
-	$.post("logon!getUserName.action",
-        function(data,ret){
-		    var data = eval("("+data+")");
-		    	if(data != 1){
-		    		$("#usert").hide();
-					$("#loginuser").show();
-		    		$("#loginuser").html("<img src='img/"+ n +" '  alt='"+ data +"'/>")
-		    		if (window.location.href.indexOf('map.html') > 0) {
-					    $(".left-direction").addClass('vis-show');
+var userlogId;
+//验证用户名是否注册
+function yzname(val) {
+	var yhm = $("#logName").val();
+	if (yhm.length >= 4) {
+		$.ajax({
+			type: "get",
+			url: "/session/get__all_users",
+			data: { "all": yhm },
+			dataType: "text",
+			success: function(ret) {
+				var data = eval(ret);
+				for(var i=0;i<data.length;i++){
+					if (data[i].U_LoginName == yhm) {
+						alert("该用户名已注册，请更换！");
+						$("#logName").val("");
 					}
-		    	}else{
-		    		$("#usert").hide();
-					$("#usert").show();
-		    	}
+				}
+			},
+			error: function(ret, ret1, ret2) {
+				debugger;
+			}
+		});
+	}
+	if (val == '2') {
+		registerSubmit();
+	};
+};
+
+
+
+
+
+
+//注册账号
+function registerSubmit() {
+	var txImg = $(".txList.checked>img").attr("src");
+	index = txImg.lastIndexOf("/");
+	var txName = txImg.substring(index+1,txImg.length);
+	var longName = $("#logName").val();
+	var logonPwd = $("#logPwd").val();	
+	var checkpwdObj = $("#checkpwd").val();
+	var zcTime = new Date();
+	$.ajax({
+		type: "get",
+		url: "/session/add_platformuser?jsoncallback=?",
+		data: {
+			"photourl": txName,
+			"datetime":zcTime,
+			"username": longName, 
+			"pwd": logonPwd,
+			"roleid":1,
+			"servervalue":55,
+			"modelvalue":55
 		},
-	"text");
+		dataType: "text",
+		success: function(ret) {
+			$("#tab1").click();
+			alert("恭喜您！注册成功。请登录");
+			$("#logName").val("");
+			$("#logPwd").val("");
+			$("#checkpwd").val("");
+		},
+		error: function(ret, ret1, ret2) {
+			debugger;
+		}
+	});	
 }
 
 
-//登陆输入框抖动
-$("#subdeng1").click(function () {
-	// login();
-	var index_we = $("#subdeng p").eq(0).children('input');
-	var index_we1 = $("#subdeng p").eq(1).children('input');
-	if (index_we.val() == 0) {
-		index_we.addClass('shake')
-		index_we1.removeClass('shake');
-	} else if (index_we1.val() == 0) {
-		index_we1.addClass('shake')
-		index_we.removeClass('shake');
-	} else {
-		index_we.removeClass('shake');
-		index_we1.removeClass('shake');
-	}
+
+
+//头像选择
+var _tx = $(".tx"),
+	_txList = $(".txList"),
+	_tx_ul = $(".tx_ul");
+_tx.click(function() {
+	_tx_ul.show();
+});
+_txList.click(function(){
+	$(this).addClass("checked").siblings().removeClass("checked");
+	var tx_check = $(".txList.checked>img").attr("src");
+	_tx.attr("src",tx_check)
+	_tx_ul.hide();
+
 });

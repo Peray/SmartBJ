@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="fankuiMap">
+    
+    <typeAlias alias="fankui" type="com.eastdawn.po.FanKui"/>
+    
+    <resultMap id="fankui-resultMap" class="fankui" >
+    	<result property="fkId" column="fk_id"/>
+		<result property="content" column="content"/>
+		<result property="email" column="email"/>
+		<result property="telephone" column="telephone"/>
+		<result property="time" column="time"/>
+		<result property="userId" column="user_id"/>
+		<result property="status" column="status"/>
+    </resultMap>
+    
+    <select id="queryFKByPage"  resultMap="fankui-resultMap" parameterClass="java.util.HashMap">
+ 		select * from fankui
+ 		<dynamic prepend="where">
+  				1=1  
+  			<isNotEmpty property="fkId"> 
+  				and fk_Id = #fkId#
+  			</isNotEmpty>
+        </dynamic>
+         order by fk_Id asc
+         <isNotEmpty property="numStart"> 
+			 LIMIT #numStart#,10
+		 </isNotEmpty>
+          
+     </select>	
+     
+     <select id="getFKCountByPage" resultClass="Long" parameterClass="java.util.HashMap">
+ 		select count(*) from fankui
+			<dynamic prepend="where">
+			    1=1
+	  			<isNotEmpty property="fkId"> 
+	  				and fk_Id = #fkId#
+	  			</isNotEmpty>
+			</dynamic>
+ 	</select>
+ 	
+ 	<select id="getFKById"  resultClass="Long" parameterClass="java.util.HashMap">
+  		select fk_id from fankui ORDER BY fk_id DESC LIMIT 1 
+ 	</select>
+ 	
+ 	 <!-- 企业添加 -->
+     <insert id="add" parameterClass="fankui"> 
+	 	insert into fankui(content,email,telephone,time,user_id,status) values (#content#,#email#,#telephone#,#time#,#userId#,#status#)
+ 	 </insert>
+ 	  <!-- 类型删除 -->
+ 	 <delete id="deleteById" parameterClass="Long">
+	 	delete from fankui where fk_id=#fkId#
+ 	 </delete>
+ 	 
+ 	  <update id="updateById" parameterClass="fankui">
+	  	update fankui set status = #status#
+	  	where fk_id=#fkId#
+	 </update>
+</sqlMap>

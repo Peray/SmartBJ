@@ -29,17 +29,6 @@
     background-color: #fff;
 }
 
-
-/*.list-li:hover .letter{
-	background:url(../img/lable2.png) center center no-repeat;
-}*/
-
-
-/*.list-li:hover .text{
-	color: #12A6DF;
-	text-decoration: underline;
-}*/
-
 .letter {
     text-align: center;
     color: #fff;
@@ -51,30 +40,39 @@
     background: url(../img/lable1.png) center center no-repeat;
 }
 
-.text {
+.text1 {
     font-size: 14px;
     font-weight: bold;
     color: #12A6DF;
-    margin-left: 10px;
+    display:inline-block;
+    vertical-align: middle;
+    /*margin-left: 10px;*/
 }
 
 .adr {
     font-size: 12px;
     margin-left: 35px;
-    height: 18px;
-    line-height: 18px;
+    line-height: 20px;
     margin-bottom: 0;
 }
-
-.text,
+.adr1{
+    margin-bottom:0!important;
+    margin-left: 35px;
+}
+.adr1>img{
+    width:15px;
+    height:15px;
+    margin:0 3px 0;
+}
+.text1,
 .adr {
-    width: 200px;
+    width: 150px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-p.tag {
+.tag {
     font-weight: bold;
 }
 
@@ -87,9 +85,8 @@ p.tag {
 }
 
 .aside_img>img {
-    width: 60px;
-    height: 60px;
-    margin: 5px 10px 0 0;
+    width: 40px;
+    margin: 25px 10px 0 0;
 }
 
 .clearfix:after {
@@ -157,7 +154,12 @@ a.jp-disabled:hover {
 }
 
 .footPage {
-    padding: 10px;
+     position: fixed;
+     bottom: 108px;
+     width: 340px;
+     left: 10px;
+     background-color: rgba(255,255,255,.9);
+     padding: 10px;
 }
 
 .dataTables_info {

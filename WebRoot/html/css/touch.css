@@ -8,10 +8,65 @@
  */
 
 header {
-    background: url(../img/sq_bg_01.png) no-repeat center;
+    background: url(../img/sq/sq_bg.png) no-repeat center;
 }
 
-form {
+.touch{
+    width: 90%;
+    margin: 20px auto;
+    padding:20px;
+    background-color: #f6faff;
+}
+.touch_info,
+.touch_map{
+    width:50%;
+    float: left;
+}
+.touch_info>p{
+	height:30px;
+	line-height: 30px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*form {
     width: 800px;
     margin: auto;
     padding: 50px 0 100px;
@@ -102,3 +157,4 @@ td>textarea {
     background-color: #29d;
     color: #fff;
 }
+*/

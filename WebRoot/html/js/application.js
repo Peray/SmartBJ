@@ -35,61 +35,27 @@ $(document).ready(function() {
 	 });
 
 
- 
-//控制texarea字数
-// var textCount = {
-// 	input:null,
-// 	init:function(config){
-// 		this.input = $(config.id);
-// 		this.bind();
-// 		//这边范围对应的对象，可以实现链式调用
-// 		return this;
-// 	},
-// 	bind:function(){
-// 		var self = this;
-// 		this.input.on('keyup',function(){
-// 			self.render();
-// 		});
-// 	},
-// 	getNum:function(){
-// 		return this.input.val().length;
-// 	},
-// 	//渲染元素
-// 	render:function(){
-// 		var num = this.getNum();
-
-// 		if ($('.J_input_count').length == 0) {
-// 			this.input.after('<span class="J_input_count" style="display:block;"></span>');
-// 		};
-// 		if(num >= 500){
-// 			alert("字数超出限制");
-// 		}
-// 		$('.J_input_count').html('还可以输入'+(500-num)+'个字');
-// 	}
-// }
-
-// $(function() {
-// 	//在domready后调用
-// 	textCount.init({id:'#textarea1'}).render();
-// })
-
-
-
-
-function sheheimg(value){
-	var arr =[];
-	$(".flow_span>span").each(function(i, e) {
-		arr.push($(e).children('img'))
+//反馈页面控制输入字符
+	var $fk_des = $("#fk_des");
+	$fk_des.keyup(function(){
+		var $spana = $(".textarea_tip");
+		var len = $(this).val().length;
+		var num = 500 - len;
+		if($fk_des.val() > 0){
+			$spana.show().children("span").text(num);
+		}else{
+			$spana.hide();
+		}
 	});
-	arr.length = value;
-	for (var i = 0; i < arr.length; i++) {
-		var tez =arr[i].attr('src').replace("1_", "2_");
-		arr[i].attr('src',tez);
-	}
-}
-
-
-
+	
+	
+//设置section min-height
+	var $window_h = $(window).height(),
+		$section = $("section"),
+		$section_h = $window_h - 432;
+	$section.css("min-height",$section_h);
+	
+	
 
 
 
@@ -117,7 +83,6 @@ function sheheimg(value){
 //图片上传
 var n = 0;
 function uploads(obj){
-	//alert(obj.files.length);
 	if (!obj.value.match(/.jpg|.gif|.png|.bmp/i))
 	{
 		alert("请选择图片文件！");
@@ -147,6 +112,23 @@ function uploads(obj){
 	}
 
 }
+
+// function upload(obj){
+// 	if (!obj.value.match(/.jpg|.gif|.png|.bmp/i)){
+// 		alert("请选择图片文件！");
+// 	}else{
+// 		var html = "";
+// 		var url = window.URL.createObjectURL(obj.files[0]);
+// 		var txt = obj.files[0].name.split(judge(obj.files[0]));
+// 		html += "<img src='"+url+"' data-action='zoom'/>"+
+// 				"<p class='p_txt'>"+txt[0]+"</p>"+
+// 				"<span class='del'>删除</span>"
+// 	}
+// 	$("#imgs").html(html)
+// 	$(".upfile").remove();	
+// }
+
+
 function judge(obj){
 	var str = "";
 	if (obj.name.match(/.jpg/i))
@@ -165,11 +147,6 @@ function judge(obj){
 	return str;
 };
 
-$(".del").click(function(){
-	$(".imgBox").remove();
-})
-$("td input").click(function(){
-	var a = $("input[name='date']:checked").val();
-console.log(a);
-})
 
+
+ 

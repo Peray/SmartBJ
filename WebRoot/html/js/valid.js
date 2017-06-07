@@ -3,52 +3,13 @@
 
 
 
-//验证协议是否选中
-$("#xieyi").click(function(event) {
-	if($("#xieyi").is(":checked")){
-		$("#subzhuce1").removeAttr("disabled").css("background-color","#2795dc");
-		
-	}else{
-		$("#subzhuce1").attr("disabled","disabled").css("background-color","#ccc");
-	}
-});
-
-
-var userlogId;
-//验证用户名是否注册
-function yzname(val) {
-	var yhm = $("#logName").val();
-	if (yhm.length >= 4) {
-		$.ajax({
-			type: "get",
-			url: "logon!searchName.action", //url, //
-			data: { "logName": yhm },
-			dataType: "text",
-			success: function(ret) {
-				var data = eval(ret);
-				if (data == '1') {
-					alert("该用户名已注册，请更换！");
-					$("#logName").val("");
-				}
-			},
-			error: function(ret, ret1, ret2) {
-				debugger;
-			}
-		});
-	}
-	if (val == '2') {
-		registerSubmit();
-	};
-};
-
-
 
 //验证企业是否注册
 function qyname() {
 	var gsnm = $("#qiye_name").val();
 	if(gsnm.length != 0 ){
 		$.ajax({
-			type: "get",
+			type: "post",
 			url: "qiye!searchName.action", //url, //
 			data: { "qiyeName":gsnm},
 			dataType: "text",
@@ -65,104 +26,6 @@ function qyname() {
 		});
 	}
 }
-
-
-//验证企业审核状态
-
-
-
-//注册账号
-function registerSubmit() {
-	var longName = $("#logName").val();
-	var logonPwd = $("#logPwd").valu();	
-	var checkpwdObj = $("#checkpwd").va();
-	
-	$.ajax({
-		type: "get",
-		url: "logon!add.action", //url, //
-		data: { "logName": longName, "logPwd": logonPwd },
-		dataType: "text",
-		success: function(ret) {
-			var data = eval(ret);
-			if (data == '1') {
-				//$("#tab1").click();
-				alert("恭喜您！注册成功。请登录");
-				$("#logName").val("");
-				$("#logPwd").val("");
-				$("#checkpwd").val("");
-			}
-		},
-		error: function(ret, ret1, ret2) {
-			debugger;
-		}
-	});	
-}
-
-
-//登陆账号
-function dlSubmit() {
-	var longName = $("#logName_d").val();
-	var logonPwd = $("#logPwd_d").val();
-	var inputCode = $("#imageCode").val();
-	
-	$.ajax({
-		type: "get",
-		url: "logon!logon.action", //url, //
-		data: { "logName": longName, "logPwd": logonPwd },
-		dataType: "text",
-		success: function(ret) {
-			data = eval("("+ret+")");
-			if (data == 1) {
-				// $("#tab1").click();
-				alert("用户名或密码不正确，请重新输入！")
-				$("#logName").val("");
-				$("#logPwd").val("");
-				$("#imageCode").val("");
-				createCode();
-			} else{
-				loginsuccess();
-				//隐藏登陆框
-				$(".nor").removeClass('md-show');			
-			}
-		},
-		error: function(ret, ret1, ret2) {
-			debugger;
-		}
-	});
-}
-
-function setCookie(value) {
-alert(value);
-	
-}
-
-//验证码
-var code; //在全局 定义验证码   
-function createCode() {
-	code = "";
-	var codeLength = 5; //验证码的长度   
-	var checkCode = document.getElementById("checkCode");
-	var selectChar = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'); //所有候选组成验证码的字符，当然也可以用中文的   
-
-	for (var i = 0; i < codeLength; i++) {
-		var charIndex = Math.floor(Math.random() * 36);
-		code += selectChar[charIndex];
-	}
-	//alert(code);
-	if (checkCode) {
-		checkCode.className = "code";
-		checkCode.value = code;
-	}
-	 loginsuccess();
-}
-
-
-
-
-
-
-
-
 
 
 
@@ -202,10 +65,6 @@ $(function() {
 			logPwd: {
 				required: true
 			},
-			imageCode: {
-				required: true,
-				equalTo:"#checkCode"
-			},
 			agree: "required"
 		},
 
@@ -215,14 +74,10 @@ $(function() {
 			},
 			logPwd: {
 				required: "请输入密码！"
-			},
-			imageCode: {
-				required: "请输入验证码！",
-				equalTo:"验证码输入错误！"
-			},
+			}
 		},
 		submitHandler: function(form) {
-			dlSubmit();
+			isLogins();
 		}
 	});
 
@@ -269,17 +124,13 @@ $(function() {
 				required: "请再次输入密码！",
 				rangelength: "密码必须在6-20位之间！",
 				equalTo: "两次密码输入不一致！"
-			},
+			}
 		},
 		submitHandler: function(form) {
 			registerSubmit();
 		}
 	});
-
-
-
-
-
+	
 //企业认证
 	$("#qyform").validate({
 		errorPlacement: function(error, element) {
@@ -291,8 +142,14 @@ $(function() {
 			tm: {
 				tm: true
 			},
-			file: {
+			afileToUpload: {
 				required: true
+			},
+			email:{
+				email:true
+			},
+			url:{
+				url:true
 			},
 			agree: "required"
 		},
@@ -301,43 +158,122 @@ $(function() {
 			tm: {
 				tm: "格式错误"
 			},
-			file: {
+			afileToUpload: {
 				required: "请选择文件"
 			},
+			email:{
+				email: "格式错误"
+			},
+			url:{
+				url:"格式错误"
+			}
 		},
-		submitHandler: function(form) {  
-			var qiyeName = $("#qiye_name").val(),
+		submitHandler: function(form) { 
+			//打开弹窗
+			$('#myModal').modal('show');
+			//取页面值
+			var qiye_name1 = $("#qiye_name1").val(),
+			lxr_name1 = $("#lxr_name1").val(),
+			telephone1 = $("#telephone1").val(),
+			email1 = $("#email1").val(),
+			website_add1 = $("#website_add1").val(),
+			faren1 = $("#faren1").val(),
+			imgs1 = $("#imgs1").html(),
+			arlt1 = $("#arlt1").val(),
+			term1 = $('input:radio[name="term1"]:checked').val();
+
+			//弹窗获取页面值
+			$("#qiye_name").val(qiye_name1);
+			$("#lxr_name").val(lxr_name1);
+			$("#telephone").val(telephone1);
+			$("#email").val(email1);
+			$("#website_add").val(website_add1);
+			$("#faren").val(faren1);
+			$("#imgs").html(imgs1);
+			$("#arlt").val(arlt1);
+			$("#lxr_name").val(lxr_name1);
+			$("input:radio[name='term'][value='" + term1 + "']").prop("checked", "checked");
+			
+			//提交
+			$("#submit").click(function() {
+				var qiyeName = $("#qiye_name").val(),
 				lxrName = $("#lxr_name").val(),
 				telephone = $("#telephone").val(),
 				email = $("#email").val(),
 				websiteAdd = $("#website_add").val(),
 				faren = $("#faren").val(),
-				zzImg = $("#zz_img").val();   
-			$.ajax({
-				type:"get",
-				url:"qiye!add.action",
-				data:{
-					"qiyeName":qiyeName,
-					"lxrName":lxrName,
-					"telephone":telephone,
-					"email":email,
-					"websiteAdd":websiteAdd,
-					"faren":faren,
-					"zzImg":zzImg,
-					"userId":userlogId
-				},
-				success:function(data){
-					var data = eval(data);
-					alert("提交成功");
-					sheheimg(2)
-				},
-				error:function(){
-					alert("未提交")
-				}
-			});     
+				arlt = $("#arlt").val();   
+				term = $('input:radio[name="term"]:checked').val();
+				$.ajax({
+					type:"post",
+					url:"qiye!add.action",
+					data:{
+						"qiyeName":qiyeName,
+						"lxrName":lxrName,
+						"telephone":telephone,
+						"email":email,
+						"websiteAdd":websiteAdd,
+						"faren":faren,
+						"zzImg":arlt,
+						"userId":userId,
+						"term":term
+					},
+					success:function(data){
+						var data = eval(data);
+						if(data == '1'){
+							window.location.href="application_2.html"
+						}else{
+							alert("添加失败");
+						}
+					},
+					error:function(){
+						alert("未提交")
+					}
+				});   
+			});  
+			
+			
+			
+			$("#submitUd").click(function() {
+				var qiyeName = $("#qiye_name").val(),
+				lxrName = $("#lxr_name").val(),
+				telephone = $("#telephone").val(),
+				email = $("#email").val(),
+				websiteAdd = $("#website_add").val(),
+				faren = $("#faren").val(),
+				faren = $("#faren").val(),
+				arlt = $("#arlt").val();   
+				term = $('input:radio[name="term"]:checked').val();
+				qiyeId = $("#qy_id").val(); 
+				$.ajax({
+					type:"post",
+					url:"qiye!update.action",
+					data:{
+						"qiyeId":qiyeId,
+						"qiyeName":qiyeName,
+						"lxrName":lxrName,
+						"telephone":telephone,
+						"email":email,
+						"websiteAdd":websiteAdd,
+						"faren":faren,
+						"zzImg":arlt,
+						"term":term
+					},
+					success:function(data){
+						var data = eval(data);
+						if(data == '1'){
+							window.location.href="application_2.html"
+						}else{
+							alert("添加失败");
+						}
+					},
+					error:function(){
+						alert("未提交")
+					}
+				});   
+			});  
 		}  
 	});
-
 
 //反馈
 	$("#fkform").validate({
@@ -345,6 +281,9 @@ $(function() {
 			tm: {
 				tm: true
 			},
+			email:{
+				email:true
+			},
 			files: {
 				required: true
 			},
@@ -355,11 +294,42 @@ $(function() {
 			tm: {
 				tm: "格式错误"
 			},
+			email:{
+				email:"请输入正确格式的邮箱"
+			},
 			files: {
 				required: "请选择文件"
-			},
+			}
 		},
-		debug: true
+		submitHandler: function(form){
+			var fk_des = $("#fk_des").val(),
+				fk_emai = $("#fk_email").val(),
+				fk_tel = $("#fk_tel").val(),
+				fk_img = $("#arlt1").val();
+			$.ajax({
+					type:"post",
+					url:"fk!add.action",
+					data:{
+						"content":fk_des,
+						"email":fk_emai,
+						"telephone":fk_tel,
+						"arlt":fk_img,
+						"userId":userId
+					},
+					success:function(data){
+						if(data == 1){
+							alert("提交成功！");
+							var $section = $("section");
+							$section.html("<p class='than_text'>感谢您的反馈！我们将尽快处理您的问题！</p>")
+						}else{
+							alert("提交失败！");
+						}
+					},
+					error:function(){
+						
+					}
+				});   
+		}
 	});
 
 
@@ -378,8 +348,8 @@ $(function() {
 			tm: {
 				tm: true
 			},
-			code: {
-				code: true
+			email:{
+				email:true
 			},
 			agree: "required"
 		},
@@ -388,12 +358,36 @@ $(function() {
 			tm: {
 				tm: "格式错误"
 			},
-			code: {
-				code: "验证码错误"
-			},
+			email:{
+				email:"请输入正确格式的邮箱"
+			}
 		},
+		submitHandler: function(form){
+			var th_gsmc = $("#th_gsmc").val(),
+				th_gsjs = $("#th_gsjs").val(),
+				th_xqms = $("#th_xqms").val(),
+				th_lxr = $("#th_lxr").val(),
+				th_tm = $("#th_tm").val(),
+				th_yx = $("#th_yx").val();
 
-		debug: true
+			$.ajax({
+				url: '',
+				data: {
+					'th_gsmc':fk_des,
+					'th_gsjs':fk_emai,
+					'th_xqms':fk_tel,
+					'th_lxr':th_lxr,
+					'th_tm':th_tm,
+					'th_yx':th_yx
+				},
+				success:function(){
+
+				},
+				error:function(){
+
+				}
+			});
+		}
 	});
 
 

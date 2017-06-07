@@ -85,8 +85,7 @@ public class UploadFile extends HttpServlet {
 		                  String prefix=fileName.substring(fileName.lastIndexOf(".")+1);
 		                  System.out.println(prefix);
 		                  newFile= Math.random() + "." +prefix;
-		                  File file = new File(path + "/"+newFile );  
-		                  
+		                  File file = new File(path + "/"+newFile);  
 		                  fileItem.write(file);  
 		                  fileItem.delete();  
 		              }  

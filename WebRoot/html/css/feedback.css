@@ -11,14 +11,6 @@ header {
     background: url(../img/fk_bg_03.png) no-repeat center;
 }
 
-/*.nav {
-    height: 40px;
-    line-height: 40px;
-    background-color: #e83636;
-    padding-left: 50px;
-    color: #fff;
-    font-size: 14px;
-}*/
 
 form {
     width: 630px;
@@ -58,10 +50,10 @@ dt.content {
     line-height: 15px;
     padding: 2px;
     font-size: 14px;
-    color: #959595;
 }
 
-.content>input[type=text] {
+.content>input[type=text],
+.content>input[type=email] {
     border: 1px solid #959595;
     border-radius: 3px;
     width: 590px;
@@ -69,6 +61,12 @@ dt.content {
     padding: 0 2px;
 }
 
+.textarea_tip{
+	display:none;
+}
+.textarea_tip>span{
+	color:#000;
+}
 
 /*上传文件*/
 
@@ -128,17 +126,17 @@ dt.content {
 }
 
 .del{
-	display:none;
-	position:absolute;
-	top:0;
-	right:0;
-	cursor:pointer;
-	width:108px;
-	text-align:right;
-	padding:1px 10px;
-	font-size:12px;
-	color:#ccc;
-	background-color:rgba(0,0,0,.5);
+    display:none;
+    position:absolute;
+    top:0;
+    right:0;
+    cursor:pointer;
+    width:108px;
+    text-align:right;
+    padding:1px 10px;
+    font-size:12px;
+    color:#ccc;
+    background-color:rgba(0,0,0,.5);
 }
 	
 
@@ -174,6 +172,18 @@ dt>input[type=submit]:hover {
     background-color: #29d;
     color: #fff;
 }
+
+.than_text{
+	font-size:18px;
+	text-align:center;
+	line-height:270px;
+}
+
+
+
+
+
+
 
 footer {
     background-color: #EEF3FA;

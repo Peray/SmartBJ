@@ -24,4 +24,12 @@
 	<bean id="qiyeBO" parent="commonBO" class="com.eastdawn.bo.impl.QiyeBOImpl">
 		<property name="qiyeDao" ref="qiyeDao" />
 	</bean>
+	
+	<bean id="fkBO" parent="commonBO" class="com.eastdawn.bo.impl.FanKuiBOImpl">
+		<property name="fkDao" ref="fkDao" />
+	</bean>
+	
+	<bean id="imgBO" parent="commonBO" class="com.eastdawn.bo.impl.ImgBOImpl">
+		<property name="imgDao" ref="imgDao" />
+	</bean>
 </beans>

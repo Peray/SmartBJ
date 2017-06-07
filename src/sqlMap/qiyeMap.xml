@@ -20,6 +20,8 @@
 		<result property="status" column="status"/>
 		<result property="tgTime" column="tg_Time"/>
 		<result property="userId" column="user_Id"/>
+		<result property="term" column="term"/>
+		<result property="content" column="content"/>
     </resultMap>
     
     <select id="getQiyeById"  resultMap="qiyeUser-resultMap" parameterClass="Long">
@@ -42,23 +44,53 @@
   			<isNotEmpty property="status"> 
   				and status = #status#
   			</isNotEmpty>
+  			<isNotEmpty property="term"> 
+  				and term = #term#
+  			</isNotEmpty>
         </dynamic>
          order by t.qiye_Id asc
+         <isNotEmpty property="numStart"> 
+			 LIMIT #numStart#,10
+		 </isNotEmpty>
+          
      </select>	
+     
+     
+     <select id="getQiyeCountByPage" resultClass="Long" parameterClass="java.util.HashMap">
+ 		select count(*) from qiyetab
+			<dynamic prepend="where">
+			    1=1
+	  			<isNotEmpty property="qiyeName"> 
+	 				and qiye_Name = #qiyeName#
+	  			</isNotEmpty>
+	  			<isNotEmpty property="qiyeId"> 
+	  				and qiye_Id = #qiyeId#
+	  			</isNotEmpty>
+	  			<isNotEmpty property="userId"> 
+	  				and user_Id = #userId#
+	  			</isNotEmpty>
+	  			<isNotEmpty property="status"> 
+	  				and status = #status#
+	  			</isNotEmpty>
+	  			<isNotEmpty property="term"> 
+	  				and term = #term#
+	  			</isNotEmpty>
+			</dynamic>
+ 	</select>
      
  	 <!-- 企业添加 -->
      <insert id="add" parameterClass="qiyeUser"> 
-	 	insert into qiyetab(qiye_Name,lxr_Name,telephone,email,website_Add,faren,zz_Img,sq_Time,status,user_Id) values (#qiyeName#,#lxrName#,#telephone#,#email#,#websiteAdd#,#faren#,#zzImg#,#sqTime#,#status#,#userId#)
+	 	insert into qiyetab(qiye_Name,lxr_Name,telephone,email,website_Add,faren,zz_Img,sq_Time,status,user_Id,term) values (#qiyeName#,#lxrName#,#telephone#,#email#,#websiteAdd#,#faren#,#zzImg#,#sqTime#,#status#,#userId#,#term#)
  	 </insert>
  	 
  	 <!-- 类型删除 -->
- 	 <delete id="deleteUpdateById" parameterClass="Long">
-	 	update qiyetab set status=#status# 
+ 	 <delete id="deleteUpdateById" parameterClass="qiyeUser">
+	 	update qiyetab set status=#status#,content = #content#,tg_Time = #tgTime#
 	  	where qiye_Id=#qiyeId#
  	 </delete>
  	<!-- 更新 -->
 	 <update id="updateById" parameterClass="qiyeUser">
-	  	update user set qiye_Name = #qiyeName#,lxr_Name=#lxrName#,telephone = #telephone#,email = #email#,website_Add = #websiteAdd#,faren = #faren#,zz_Img = #zzImg#
+	  	update qiyetab set qiye_Name = #qiyeName#,lxr_Name=#lxrName#,telephone = #telephone#,email = #email#,website_Add = #websiteAdd#,faren = #faren#,zz_Img = #zzImg#,term = #term#,status = #status#
 	  	where qiye_Id=#qiyeId#
 	 </update>
 </sqlMap>

@@ -1,0 +1,638 @@
+
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+@-webkit-keyframes fadeIn1 {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes fadeOut1 {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@-webkit-keyframes scale {
+  0% {
+    -webkit-transform: scale(1);
+  }
+  40% {
+    -webkit-transform: scale(1.05);
+  }
+  100% {
+    -webkit-transform: scale(1);
+  }
+}
+@-webkit-keyframes twinkle {
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+@-webkit-keyframes twinkle1 {
+  0% {
+    opacity: 0.1;
+  }
+  30% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.1;
+  }
+}
+@-webkit-keyframes move {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0);
+  }
+  25% {
+    -webkit-transform: translate3d(-10px, 0, 0);
+  }
+  50% {
+    -webkit-transform: translate3d(0, 0, 0);
+  }
+  75% {
+    -webkit-transform: translate3d(10px, 0, 0);
+  }
+  100% {
+    -webkit-transform: translate3d(0, 0, 0);
+  }
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+  background: #0c0604 url(../img/bg_loading.jpg) no-repeat center;
+  background-size: cover;
+}
+.ns-meteor-page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.m-loading {
+  opacity: 1;
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.m-loading.hide {
+  opacity: 0;
+  -webkit-transition: opacity 0.3s linear;
+}
+.m-loading .wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 375px;
+  height: 600px;
+  margin: -300px 0 0 -187.5px;
+  overflow: hidden;
+}
+.m-loading .wrap .inner-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 302px;
+  height: 130px;
+  margin: -82px 0 0 -151px;
+  background: url(../img/bg_loading_inner.png) no-repeat center;
+  background-size: 302px 130px;
+}
+.m-loading .wrap .inner-box canvas {
+  position: absolute;
+  left: 72px;
+  top: -38px;
+  -webkit-transform: rotate(15deg);
+}
+.m-loading .wrap .loadText {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  margin-top: 50px;
+  color: #fff;
+  font-size: 12px;
+  text-align: center;
+}
+.m-loading .wrap .text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 93px;
+  height: 50px;
+  margin: -160px 0 0 -46.5px;
+  background: url(../img/bg_loading_text.png) no-repeat center;
+  background-size: cover;
+}
+.m-loading .wrap .tips {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  margin-top: 75px;
+  color: #c0d4ff;
+  font-size: 10px;
+  text-align: center;
+}
+.m-index {
+  display: none;
+  opacity: 0;
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.m-index.show {
+  opacity: 1;
+  -webkit-transition: opacity 0.3s linear;
+}
+.m-index .wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 375px;
+  height: 600px;
+  margin: -300px 0 0 -187.5px;
+  overflow: hidden;
+}
+.m-index .ns-webgl-page {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-transform: translateY(-40px);
+  -webkit-transition: -webkit-transform 0.8s linear;
+}
+.m-index .ns-webgl-page.animate {
+  -webkit-transform: translateY(20px);
+  -webkit-transition: -webkit-transform 0.8s linear;
+}
+.m-index .index-box {
+  pointer-events: none;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-transform: translate3d(0, 0, 0);
+}
+.m-index .index-box.show {
+  -webkit-animation: fadeIn1 0.5s linear both;
+  -webkit-animation-fill-mode: both;
+}
+.m-index .index-box.show .btn-tips.hide .inner {
+  -webkit-animation-play-state: paused;
+}
+.m-index .index-box.show .btn-tips .hand {
+  -webkit-animation: move 2s linear infinite;
+}
+.m-index .index-box.hide {
+  -webkit-animation: fadeOut1 0.5s linear both;
+  -webkit-animation-fill-mode: both;
+}
+.m-index .index-box .text {
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 117px;
+  height: 18px;
+  margin: -253px 0 0 -58.5px;
+  background: url(../img/bg_text_deg.png) no-repeat;
+  background-size: 124px 95px;
+  -webkit-transform: translate3d(0, -10px, 0);
+  -webkit-transition: all 0.5s linear;
+}
+.m-index .index-box .text.show {
+  opacity: 1;
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-transition: all 0.5s linear;
+}
+.m-index .index-box .cover {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 375px;
+  height: 600px;
+  margin: -300px 0 0 -187.5px;
+  background: url(../img/bg_index_cover.png) no-repeat center;
+  background-size: cover;
+  pointer-events: none;
+}
+.m-index .index-box .name {
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 59px;
+  height: 12px;
+  margin: -32px 0 0 -25px;
+}
+.m-index .index-box .name.ANTARCTICA {
+  opacity: 1;
+  background: url(../img/i_antarctica.png) no-repeat;
+  background-position: -8px center;
+  background-size: cover;
+  margin-left: -23px;
+  -webkit-transition: opacity 0.5s linear;
+}
+.m-index .index-box .name.MARIANA {
+  opacity: 1;
+  background: url(../img/i_mariana.png) no-repeat;
+  background-position: -8px center;
+  background-size: cover;
+  margin-left: -17px;
+  -webkit-transition: opacity 0.5s linear;
+}
+.m-index .index-box .name.NAMIBIA {
+  opacity: 1;
+  background: url(../img/i_namibia.png) no-repeat;
+  background-position: -8px center;
+  background-size: cover;
+  margin-left: -14px;
+  -webkit-transition: opacity 0.5s linear;
+}
+.m-index .index-box .name.GREENLAND {
+  opacity: 1;
+  background: url(../img/i_greenland.png) no-repeat;
+  background-position: -8px center;
+  background-size: cover;
+  margin-left: -24px;
+  -webkit-transition: opacity 0.5s linear;
+}
+.m-index .index-box .name.GALAPAGOS {
+  opacity: 1;
+  background: url(../img/i_galapagos.png) no-repeat;
+  background-position: -8px center;
+  background-size: cover;
+  margin-left: -24px;
+  -webkit-transition: opacity 0.5s linear;
+}
+.m-index .index-box .btn-tips {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+}
+.m-index .index-box .btn-tips.hide {
+  opacity: 0;
+  -webkit-transition: opacity 0.5s linear;
+}
+.m-index .index-box .btn-tips .inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 325px;
+  height: 89px;
+  margin: -35px 0 0 -162.5px;
+  background: url(../img/bg_tips.png) no-repeat center;
+  background-size: cover;
+}
+.m-index .index-box .btn-tips .hand {
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  width: 16px;
+  height: 19px;
+  margin-left: -8px;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAlCAMAAAAUaRt1AAAAn1BMVEUAAAD///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8Kd3m4AAAANHRSTlMAlmkQ0/wt6VwnCe7LBuLy29ademJUQxX6z8Cqfj44MQL1x7OkkYx1cksd6+Syr4giGQ13lsLQ3wAAAUhJREFUOMvVk8mWgjAQRcvGGLSZZQbBsZ3Hfv//bR0JR0UJ+76L2nAPqXqp0IPdyuVpQEpuFu6slYKOpIh0Zo9Uwhd6oroYdgt9DP6DEOr+ZNolMADJrkPAyXNgdAg/RKaB7WCiPT5tvcw3ayFlF1FzCJhn0h0zg2BhSkGrkvbBnPkMq4gEv5jlPsdJCpIyzomGMWCfTXIREA049lKQVD9PsIdoyUFIlSGEJuu5FsKisZyp5EL44IoDjSzoJLgsi09hCJdIh6XcognmRFMDY5UQIBM1hB0phLWYQrBATyGssKlaiWPFqi4gH0oPx3bBqfcnshFSCyPG5ID3tNq2aACHKmRan/jIqEKV1hIbqlClxVE+Q21Jq8CBnhzhURMtQf56cbO3Q8o++o2+dIY02Gk1xZLBvVKDLccrzLvRG9om5d8Sbpzr6/kD3m8ncPKoKHQAAAAASUVORK5CYII=) no-repeat center;
+  background-size: cover;
+}
+.m-index .box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80px;
+  height: 80px;
+  border: 1px solid #fff;
+  margin: -110px 0 0 -40px;
+}
+.m-index .ns-parallax {
+  display: none;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-transition: all 0.2s linear;
+}
+.m-index .ns-parallax.show {
+  opacity: 1;
+  -webkit-transition: opacity 0.1s linear;
+}
+.m-index .ns-parallax .tips {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 73px;
+  height: 13px;
+  margin: -260px 0 0 -36.5px;
+  z-index: 8;
+}
+.m-index .ns-parallax .tips.show .inner {
+  -webkit-transform: scale(1.2);
+  -webkit-animation: twinkle1 2s linear infinite;
+}
+.m-index .ns-parallax .tips .inner {
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  background: url(../img/bg_back_tips.png) no-repeat center;
+  background-size: cover;
+}
+.m-index .ns-parallax .ns-video {
+  position: absolute;
+  width: 375px;
+  height: 600px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.m-index .ns-parallax .ns-kf {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 375px;
+  height: 600px;
+  margin: -300px 0 0 -187.5px;
+}
+.m-index .ns-parallax .ns-kf.kf-cloud {
+  opacity: 1;
+  display: block;
+  z-index: 10;
+  -webkit-transition: opacity 0.3s linear;
+}
+.m-index .ns-parallax .ns-kf.kf-cloud.hide {
+  opacity: 0;
+  -webkit-transition: opacity 0.3s linear;
+}
+.m-index .btn-show-parallax {
+  opacity: 0;
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 99px;
+  height: 133.5px;
+  margin: 140px 0 0 -49.5px;
+  z-index: 11;
+}
+.m-index .btn-show-parallax.show {
+  display: block;
+  -webkit-animation: fadeIn1 0.5s linear both;
+  -webkit-animation-fill-mode: both;
+}
+.m-index .btn-show-parallax.hide {
+  -webkit-animation: fadeOut1 0.5s linear both;
+  -webkit-animation-fill-mode: both;
+}
+.m-index .btn-show-parallax .bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url(../img/btn_show.png) no-repeat center;
+  background-size: cover;
+  -webkit-animation: twinkle 2s linear infinite;
+}
+.m-index .btn-show-parallax .text {
+  opacity: 1;
+  position: absolute;
+  top: 0;
+  left: 7px;
+  width: 83px;
+  height: 27px;
+  background: url(../img/btn_show_text.png) no-repeat center;
+  background-size: cover;
+  -webkit-transition: opacity 0.5s linear;
+}
+.m-index .btn-show-parallax .text.hide {
+  opacity: 0;
+  -webkit-transition: opacity 0.5s linear;
+}
+.m-index .btn-show-end {
+  opacity: 0;
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 66px;
+  height: 70px;
+  margin: 182px 0 0 64px;
+  background: url(../img/btn_end.png) no-repeat center;
+  background-size: cover;
+  -webkit-transform: translate3d(0, 0, 0);
+}
+.m-index .btn-show-end.show {
+  display: block;
+  -webkit-animation: fadeIn1 0.5s linear both;
+  -webkit-animation-fill-mode: both;
+}
+.m-index .btn-show-end.hide {
+  -webkit-animation: fadeOut1 0.5s linear both;
+  -webkit-animation-fill-mode: both;
+}
+.m-end {
+  display: none;
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.m-end.show {
+  -webkit-animation: fadeIn1 0.5s linear both;
+  -webkit-animation-fill-mode: both;
+}
+.m-end.hide {
+  -webkit-animation: fadeOut1 0.6s linear both;
+  -webkit-animation-fill-mode: both;
+}
+.m-end .wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 375px;
+  height: 600px;
+  margin: -300px 0 0 -187.5px;
+  overflow: hidden;
+}
+.m-end .wrap .text-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 203px;
+  height: 83px;
+  margin: -250px 0 0 -101.5px;
+}
+.m-end .wrap .text-box.hide {
+  opacity: 0;
+  -webkit-transition: opacity 0.8s linear;
+}
+.m-end .wrap .text-box.show .text1 {
+  opacity: 1;
+  -webkit-transition: opacity 1s linear;
+}
+.m-end .wrap .text-box.show .text2 {
+  opacity: 1;
+  -webkit-transition: opacity 1s linear 2s;
+}
+.m-end .wrap .text-box.show .text3 {
+  opacity: 1;
+  -webkit-transition: opacity 1s linear 4s;
+}
+.m-end .wrap .text-box.show .text4 {
+  opacity: 1;
+  -webkit-transition: opacity 1s linear 6s;
+}
+.m-end .wrap .text-box .text {
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  background: url(../img/bg_end_text1.png) no-repeat;
+  background-size: 203px 83px;
+}
+.m-end .wrap .text-box .text.text1 {
+  top: 0;
+  height: 18px;
+  background-position: 0 0;
+}
+.m-end .wrap .text-box .text.text2 {
+  top: 18px;
+  height: 22px;
+  background-position: 0 -18px;
+}
+.m-end .wrap .text-box .text.text3 {
+  top: 40px;
+  height: 22px;
+  background-position: 0 -40px;
+}
+.m-end .wrap .text-box .text.text4 {
+  top: 62px;
+  height: 22px;
+  background-position: 0 -62px;
+}
+.m-end .wrap .end-box {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.m-end .wrap .end-box.show {
+  -webkit-animation: fadeIn1 1s linear both 1s;
+  -webkit-animation-fill-mode: both;
+}
+.m-end .wrap .end-box .title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 279px;
+  height: 127px;
+  margin: -270px 0 0 -139.5px;
+  background: url(../img/bg_end_text.png) no-repeat center;
+  background-size: cover;
+}
+.m-end .wrap .end-box .btn-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 309px;
+  height: 50px;
+  margin: 215px 0 0 -154.5px;
+}
+.m-end .wrap .end-box .btn-box > div {
+  position: absolute;
+  top: 0;
+  width: 140px;
+  height: 50px;
+}
+.m-end .wrap .end-box .btn-box > div.btn-again {
+  left: 0;
+  background: url(../img/btn_again.png) no-repeat center;
+  background-size: cover;
+}
+.m-end .wrap .end-box .btn-box > div.btn-link {
+  right: 0;
+  background: url(../img/btn_link.png) no-repeat center;
+  background-size: cover;
+}
+.m-audio {
+  display: none;
+  width: 1px;
+  height: 1px;
+}
+.btn-music {
+  display: none;
+  position: absolute;
+  top: 34px;
+  left: 27.5px;
+  width: 29px;
+  height: 29px;
+  background: url(../img/btn_audio.png) no-repeat center;
+  background-size: cover;
+}
+.btn-music.pause::before {
+  content: "";
+  position: absolute;
+  width: 130%;
+  height: 1px;
+  margin: auto;
+  top: -2px;
+  bottom: 0;
+  left: -3px;
+  right: 0;
+  background: #fff;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}

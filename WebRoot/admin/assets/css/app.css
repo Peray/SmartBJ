@@ -1910,6 +1910,12 @@ ul.tpl-dropdown-content .tpl-dropdown-menu-messages-item .menu-messages-content 
 		right: 0;
 	}
 }
+.am-icon-comments,
+.am-icon-file-text{
+	width:20px;
+	margin-right:6px;
+	font-size:16px;
+}
 
 
 
@@ -1937,4 +1943,21 @@ ul.tpl-dropdown-content .tpl-dropdown-menu-messages-item .menu-messages-content 
 }
 .fb_content{
 	width:350px!important;
+}
+#yyzz>img,
+.img_w{
+	width:130px;
+	height:130px;
+	margin:5px;
+	border:1px solid #ccc;
+}
+.btn_am{
+	position:fixed;
+	left:0;
+	bottom:0;
+	text-align:center;
+}
+
+#fbMap{
+	height: 500px;
 }

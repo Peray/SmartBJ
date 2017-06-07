@@ -1,5 +1,6 @@
 package com.eastdawn.action;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.Date;
@@ -7,7 +8,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -15,21 +15,12 @@ import javax.servlet.http.HttpSession;
 import net.sf.json.JSONObject;
 
 import org.apache.struts2.ServletActionContext;
-
-import com.eastdawn.common.PageUtil;
-import com.eastdawn.dao.LogLogonDao;
 import com.eastdawn.dao.QiyeDao;
-import com.eastdawn.dao.UserDao;
-import com.eastdawn.util.DESHelper;
 import com.eastdawn.bo.QiyeBO;
-import com.eastdawn.bo.UserBO;
-import com.eastdawn.common.PageAction;
 import com.eastdawn.po.QiyeUser;
-import com.eastdawn.po.User;
-import com.eastdawn.util.StaticName;
 
 @SuppressWarnings("serial")
-public class QiyeAction extends PageAction {
+public class QiyeAction{
 	
 	private Long qiyeId;//企业ID
 	private String qiyeName;//企业名称
@@ -43,6 +34,13 @@ public class QiyeAction extends PageAction {
 	private Integer status;//企业当前状态(0：提交申请、1审核通过、2试用期、3已付费、4注销)
 	private Date tgTime;//审核通过日期
 	private Long userId;//申请人ID
+	private String term;//期限
+	private String content;//未通过原因
+	
+	private Long statr;
+	private Long totalNum;
+	
+	private String fileName;
 	
 	private QiyeUser qyUser;
 
@@ -88,10 +86,11 @@ public class QiyeAction extends PageAction {
 			qyUser.setEmail(this.email);
 			qyUser.setWebsiteAdd(this.websiteAdd);
 			qyUser.setFaren(this.faren);
-			qyUser.setZzImg(this.zzImg);
+		    qyUser.setZzImg(this.zzImg.substring(4));
 			qyUser.setSqTime(new Date());
 			qyUser.setStatus(0);
 			qyUser.setUserId(this.userId);
+			qyUser.setTerm(this.term);
 			this.qiyeId = qiyeBO.add(qyUser);
 			response.setCharacterEncoding("UTF-8"); 
 			response.getWriter().write("1");
@@ -121,38 +120,48 @@ public class QiyeAction extends PageAction {
 			if(this.status != null && !this.status.equals("")){
 			    queryMap.put("status", status);
 			}
-			
-//			super.totalNum = userDao.getUserCountByPage(queryMap);
-//			super.setPageNum(10);
-//			super.totalPage = super.getTotalPage();
-//			queryMap.put(PageUtil.NUM_START, super.getNumStart());
-//			queryMap.put(PageUtil.NUM_END, super.getNumEnd());
-			
+			totalNum = qiyeDao.getQiyeCountByPage(queryMap);
+			System.out.println(totalNum);
+			System.out.println(statr+"--"+statr+'0'+"--"+statr+0);
+			if(statr == null){
+				queryMap.put("numStart", 0);
+			}else{
+				queryMap.put("numStart", (statr-1)*10);
+			}
 			qiyeList = qiyeDao.queryQiyeByPage(queryMap);
 			
 			JSONObject object = new JSONObject();  
+	        object.put("num", totalNum); 
 	        object.put("list", qiyeList); 
-	        System.out.println(object.toString());
+	        System.out.println(totalNum+object.toString());
 	        iResponse.setCharacterEncoding("utf-8");
 	        iResponse.getWriter().write(object.toString());
-		
 		} catch (RuntimeException e) {
 			e.printStackTrace();
 		}
-		
-		return "search";	
+		return null;	
 	}
 	
-	//删除更新
+	//审核未通过原因
 	public String deleteupdate() throws ParseException, IOException{	
 		HttpServletResponse response = ServletActionContext.getResponse();
 		QiyeUser qyUser = new QiyeUser();
-		
-		qyUser.setQiyeId(getQiyeId());
-		qyUser.setStatus(getStatus());
-		qiyeDao.deleteUpdateById(qyUser);
-		response.setCharacterEncoding("UTF-8"); 
-		response.getWriter().write("1");
+		try {
+			qyUser.setQiyeId(getQiyeId());
+			qyUser.setStatus(getStatus());
+			if(this.content != null && !this.content.equals("")){
+				qyUser.setContent(getContent());
+			}
+			if(this.status == 2){
+				qyUser.setTgTime(new Date());
+			}
+			qiyeDao.deleteUpdateById(qyUser);
+			response.getWriter().write("1");
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			response.getWriter().write("2");
+		}
 		return null;
 	}
 
@@ -189,21 +198,52 @@ public class QiyeAction extends PageAction {
 		return null;
 	}
 	//内容更新
-	public String update() throws ParseException{
+	public String update() throws ParseException, IOException{
+		HttpServletResponse response = ServletActionContext.getResponse();
 		QiyeUser qyUser = new QiyeUser();
+		try {
+			System.out.println(getZzImg().substring(4));
+			qyUser.setQiyeId(getQiyeId());
+			qyUser.setQiyeName(getQiyeName());
+			qyUser.setLxrName(getLxrName());
+			qyUser.setTelephone(getTelephone());
+			qyUser.setEmail(getEmail());
+			qyUser.setWebsiteAdd(getWebsiteAdd());
+			qyUser.setFaren(getFaren());
+			qyUser.setZzImg(getZzImg().substring(4));
+			qyUser.setTerm(getTerm());
+			qyUser.setStatus(0);
+			qiyeBO.updateById(qyUser);
+			response.getWriter().write("1");
+		} catch (Exception e) {
+			// TODO: handle exception
+			response.getWriter().write("2");
+			e.printStackTrace();
+		}
 		
-		qyUser.setQiyeId(getQiyeId());
-		qyUser.setQiyeName(getQiyeName());
-		qyUser.setLxrName(getLxrName());
-		qyUser.setTelephone(getTelephone());
-		qyUser.setEmail(getEmail());
-		qyUser.setWebsiteAdd(getWebsiteAdd());
-		qyUser.setFaren(getFaren());
-		qyUser.setZzImg(getZzImg());
-		
-		qiyeBO.updateById(qyUser);
-		return "goDetail";
+		return null;
 	}
+	
+	public String deleteFile() throws IOException {
+		HttpServletRequest request = ServletActionContext.getRequest();	
+		HttpServletResponse response = ServletActionContext.getResponse();
+		String path = request.getSession().getServletContext().getRealPath("\\share");  
+        System.out.println(path);
+        String filePath = path + "\\" + this.fileName;
+        System.out.println(filePath);
+        File file = new File(filePath);
+        // 如果文件路径所对应的文件存在，并且是一个文件，则直接删除
+        if (file.exists() && file.isFile()) {
+            file.delete();
+            response.setCharacterEncoding("UTF-8"); 
+			response.getWriter().write("1");
+        } else {
+        	response.setCharacterEncoding("UTF-8"); 
+			response.getWriter().write("2");
+        }
+		return null;
+    }
+	
 	public Long getQiyeId() {
 		return qiyeId;
 	}
@@ -299,5 +339,35 @@ public class QiyeAction extends PageAction {
 	}
 	public void setQiyeList(List qiyeList) {
 		this.qiyeList = qiyeList;
+	}
+	public String getTerm() {
+		return term;
+	}
+	public void setTerm(String term) {
+		this.term = term;
+	}
+	public String getFileName() {
+		return fileName;
+	}
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+	public Long getStatr() {
+		return statr;
+	}
+	public void setStatr(Long statr) {
+		this.statr = statr;
+	}
+	public Long getTotalNum() {
+		return totalNum;
+	}
+	public void setTotalNum(Long totalNum) {
+		this.totalNum = totalNum;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
 	}
 }

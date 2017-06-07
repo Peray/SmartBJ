@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="imgMap">
+    
+    <typeAlias alias="img" type="com.eastdawn.po.Img"/>
+    
+    <resultMap id="img-resultMap" class="img" >
+    	<result property="imgId" column="img_id"/>	
+    	<result property="imgName" column="img_name"/>	
+		<result property="onlinePath" column="online_path"/>
+		<result property="parentId" column="parent_id"/>
+    </resultMap>
+    
+ 
+    
+ 	<select id="queryImgByPage" resultMap="img-resultMap" parameterClass="java.util.HashMap">
+  		select * from img
+ 		<dynamic prepend="where">
+  				1=1  
+  			<isNotEmpty property="imgId"> 
+  				and img_id = #imgId#
+  			</isNotEmpty>
+  			<isNotEmpty property="imgName"> 
+  				and img_name = #imgName#
+  			</isNotEmpty>
+  			<isNotEmpty property="parentId"> 
+  				and parent_id = #parentId#
+  			</isNotEmpty>
+        </dynamic>
+ 	</select>
+ 	
+ 	 <!-- 类型添加 -->
+     <insert id="add" parameterClass="img"> 
+     	 insert into img(img_id,img_name,online_path,parent_id) values (#imgId#,#imgName#,#onlinePath#,#parentId#)
+ 	 </insert>
+ 	 <!-- 类型删除 -->
+ 	 <delete id="deleteById" parameterClass="Long">
+	 	delete from img where parent_id=#fkId#
+ 	 </delete>
+</sqlMap>

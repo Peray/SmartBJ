@@ -3,332 +3,384 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+	<link rel="stylesheet" type="text/css" href="css/detial.css">
 	<link rel="stylesheet" type="text/css" href="css/history.css">
-	<style type="text/css">
-		*{
-			margin:0;
-			padding:0;
-		}
-		body{
-			font-family: "微软雅黑";
-			font-size:14px;
-			color: #b5b5b5;
-			overflow: hidden;
-		}
-		.ul-title{
-			list-style: none;
-			border-bottom: 1px solid #f0f0f0;
-			height: 36px;
-			line-height: 36px;
-		}
-		.ul-title>li{
-			float:left;
-			width: 78px;
-			height: 36px;
-			text-align: center;
-			cursor: pointer;
-			font-size: 16px;
-			box-sizing: border-box;
-			font-weight: bold;
-		}
-		.ul-content{
-			min-height: 342px;
-			display: none;
-		}
-		.e{
-			display: block;
-		}
-		.title-style{
-			border-bottom:4px solid #575757;
-			color:#575757;
-		}
-		.ajaxHtml{
-			margin: 31px 0 0 36px;
-		}
-		.ajaxHtml_name{
-			font-size: 16px;
-			color: #575757;
-			font-weight:bold;
-		}
-		.ajaxHtml_detail{
-			background:url(img/22_10.png) no-repeat 8px 0;
-			padding-left: 32px;
-			margin-top:10px;
-			font-size: 12px;
-		}
-		.details{
-			margin:  16px 36px 0;
-			color: #212121;
-			height: 110px;
-			overflow: hidden;
-		}
-		.details_img{
-			margin:30px 0;
-			background-color:#e0e0e0;
-		}
-		.details_img>img{
-			width: 428px;
-			height: 160px;
-			padding: 22px 18px;
-		}
-	</style>
+	<script src="http://api.map.baidu.com/api?v=2.0&ak=NFzwQSR7FlNsPgGXNQFBM9XwV4rrH1Uy"></script>
 </head>
 <body>
-	<article>
+	<article class="window">
 		<ul class="ul-title clearfix">
 			<li class="title-style"><span>基本信息</span></li>
 			<li><span>位博</span></li>
+			<li onclick="window.parent.cameraimg"><span>实况</span></li>
 		</ul>
 		<div class="ul-content e">
-			<div class="ajaxHtml"></div>
-			<div class="details" id="details">
-				<span class="details_name">详情：</span>
-				<span class="details_content">无说明</span>
-			</div>
+			<div class="details" id="details"></div>
 			<div class="details_img">
-				<img src="img/pic_06.png" alt="" />
+				<div id="viewerin"></div>
 			</div>
 		</div>
 		<div class="ul-content">
-			<p style="color:#000;text-align: center;margin-top: 50px;">无事件</p>
-			<!-- <div id="arrow">
-				<ul>
-					<li class="arrowup"></li>
-					<li class="arrowdown"></li>
-				</ul>
-			</div>
-			<div id="history">
-				<div class="title">
-					<div id="circle">
-						<div class="cmsk"></div>
-						<div class="circlecontent">
-							<div thisyear="" class="timeblock">
-								<span class="numf"></span>
-								<span class="nums"></span>
-								<span class="numt"></span>
-								<span class="numfo"></span>
-								<div class="clear"></div>
-							</div>
-							<div class="timeyear">YEAR</div>
-						</div>
-						<a href="#" class="clock"></a>
-					</div>
-				</div>
-				<div id="content">
-					<ul class="list">
-						<li>
-							<div class="liwrap">
-								<div class="lileft">
-									<div class="date">
-										<span class="year">2015</span>
-										<span class="md">0903</span>
-									</div>
-								</div>
-								
-								<div class="point"><b></b></div>
-								
-								<div class="liright">
-									<div class="hisct"><img src="img/tiananmen/tiananmen93.jpg" alt="" /></div>
-									<div class="histt"><a href="#">中国人民抗日战争暨世界反法西斯战争胜利70周年大阅兵</a></div>
-								</div>
-							</div>
+			<ul class="wb_list clearfix;">
+				<li class="ef news">位信息</li>
+				<li>位评价</li>
+				<li>位知识</li>
+			</ul>
+			<ol class="wb_content" style="background-color:#edffff;">
+				<li class="fe Comment">
+					<h6 class="date">
+						<span>今日</span>
+						<span>本周</span>
+						<span>本月</span>
+					</h6>
+					<ul class="news">
+						<li class="theme">
+							<h3>这件事 习近平和你一样一直努力着</h3>
+							<article class="wz">
+								　　<p>今天，第46个世界环境日，人民日报推出微视频《习近平瞩望绿水青山》。</p>
+								　　
+								　　<p>与所有普通百姓一样，习近平期望蓝天、白云、洁净的水和新鲜的空气。</p>
+
+								　　<p>无论走到哪里，他都心系生态环境保护。在云南，他跟当地省委书记、省长在洱海边合影。他说：“希望多少年后再照一张照片，那时候水比现在更干净、更清澈，如果不干净了，我要找你们。”在陕西，他强调要尽可能减少对自然环境的损害。</p>
+
+								　　<p>在他看来，绿水青山就是金山银山，保护环境就是保护生产力。“不能吃祖宗饭、断子孙路，用破坏性方式搞发展”；“要像保护眼睛一样保护生态环境，像对待生命一样对待生态环境”。</p>
+
+								　　<p>保护生态环境、留住绿水青山，他亲自部署实施中央环保督查，要求严查腾格里沙漠污染等破坏生态的事件。对那些不顾生态环境盲目决策、造成严重后果的人，他要求追究责任，而且应该终身追究。如今，中央环境保护督察，在已督察的16个省份问责6400多人。</p>
+
+								　　<p>《生态文明体制改革总体方案》印发、新《环境保护法》施行、党政领导干部生态环境损害责任追究办法出台……在他的推动下，一项项改革措施密集出台。如今，政绩考核不再简单以GDP论英雄，责任追究制度让各级领导干部警钟长鸣，“绿水青山就是金山银山”的朴素道理，正得到越来越多人们的认同。</p>
+
+								　　<p>形成绿色发展方式和生活方式并非一日之功，每个人都应该做践行者、推动者。在建设美好家园的道路上，习近平和每一个中国人一样，一直努力着。</p>
+							</article>
+							<p class="text-right">
+								<span class="ckqw">查看全文</span>
+							</p>
+							<p class="clearfix">
+								<img class="news_tx" src="img/tx/tx_5.jpg" />
+								<span class="news_name">小小树</span>
+								<span class="news_date">2017年5月30日 10:00:09</span>
+								<span class="zan">支持(1)</span>
+								<span class="zan">反对(1)</span>
+							</p>
 						</li>
-						<li>
-							<div class="liwrap">
-								<div class="lileft">
-									<div class="date">
-										<span class="year">1990</span>
-										<span class="md">02</span>
-									</div>
-								</div>
-								
-								<div class="point"><b></b></div>
-								
-								<div class="liright">
-									<div class="hisct"><img src="img/tiananmen/tananmen05.jpg" alt="" /></div>
-									<div class="histt"><a href="#">早些年前的天安门</a></div>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="liwrap">
-								<div class="lileft">
-									<div class="date">
-										<span class="year">1981</span>
-										<span class="md">07</span>
-									</div>
-								</div>
-								
-								<div class="point"><b></b></div>
-								
-								<div class="liright">
-									<div class="hisct"><img src="img/tiananmen/tananmen07.jpg" alt="" /></div>
-									<div class="histt"><a href="#">早些年前的天安门</a></div>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="liwrap">
-								<div class="lileft">
-									<div class="date">
-										<span class="year">1975</span>
-										<span class="md">08</span>
-									</div>
-								</div>
-								
-								<div class="point"><b></b></div>
-								
-								<div class="liright">
-									<div class="hisct"><img src="img/tiananmen/tananmen03.jpg" alt="" /></div>
-									<div class="histt"><a href="#">早些年前的天安门</a></div>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="liwrap">
-								<div class="lileft">
-									<div class="date">
-										<span class="year">1973</span>
-										<span class="md">02</span>
-									</div>
-								</div>
-								
-								<div class="point"><b></b></div>
-								
-								<div class="liright">
-									<div class="hisct"><img src="img/tiananmen/tananmen06.jpg" alt="" /></div>
-									<div class="histt"><a href="#">早些年前的天安门</a></div>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="liwrap">
-								<div class="lileft">
-									<div class="date">
-										<span class="year">1963</span>
-										<span class="md">12</span>
-									</div>
-								</div>
-								
-								<div class="point"><b></b></div>
-								
-								<div class="liright">
-									<div class="hisct"><img src="img/tiananmen/tananmen04.jpg" alt="" /></div>
-									<div class="histt"><a href="#">63年天安门三轮车</a></div>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="liwrap">
-								<div class="lileft">
-									<div class="date">
-										<span class="year">1958</span>
-										<span class="md">10</span>
-									</div>
-								</div>
-								
-								<div class="point"><b></b></div>
-								
-								<div class="liright">
-									<div class="hisct"><img src="img/tiananmen/tananmen10.jpg" alt="" /></div>
-									<div class="histt"><a href="#">女交通民警在天安门前站岗执勤</a></div>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="liwrap">
-								<div class="lileft">
-									<div class="date">
-										<span class="year">1950</span>
-										<span class="md">07</span>
-									</div>
-								</div>
-								
-								<div class="point"><b></b></div>
-								
-								<div class="liright">
-									<div class="hisct"><img src="img/tiananmen/tananmen09.jpg" alt="" /></div>
-									<div class="histt"><a href="#">压路机在天安门城楼前施工作业</a></div>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="liwrap">
-								<div class="lileft">
-									<div class="date">
-										<span class="year">1950</span>
-										<span class="md">06</span>
-									</div>
-								</div>
-								
-								<div class="point"><b></b></div>
-								
-								<div class="liright">
-									<div class="hisct"><img src="img/tiananmen/tananmen08.jpg" alt="" /></div>
-									<div class="histt"><a href="#">1950年6月长安街景</a></div>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="liwrap">
-								<div class="lileft">
-									<div class="date">
-										<span class="year">1949</span>
-										<span class="md">0707</span>
-									</div>
-								</div>
-								
-								<div class="point"><b></b></div>
-								
-								<div class="liright">
-									<div class="hisct"><img src="img/tiananmen/tananmen02.jpg" alt="" /></div>
-									<div class="histt"><a href="#">1949年7月7日，纪念“七七”抗战12周年大会</a></div>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="liwrap">
-								<div class="lileft">
-									<div class="date">
-										<span class="year">1949</span>
-										<span class="md">0212</span>
-									</div>
-								</div>
-								
-								<div class="point"><b></b></div>
-								
-								<div class="liright">
-									<div class="hisct"><img src="img/tiananmen/tananmen01.png" alt="" /></div>
-									<div class="histt"><a href="#">1949年2月12日，庆祝北平解放大会</a></div>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="liwrap">
-								<div class="lileft">
-									<div class="date">
-										
-									</div>
-								</div>
-								
-								<div class="point"><b></b></div>
-								
-								<div class="liright">
-									
-								</div>
-							</div>
+
+						<li class="theme">
+							<h3>这件事 习近平和你一样一直努力着</h3>
+							<article class="wz">
+								　　<p>今天，第46个世界环境日，人民日报推出微视频《习近平瞩望绿水青山》。</p>
+								　　
+								　　<p>与所有普通百姓一样，习近平期望蓝天、白云、洁净的水和新鲜的空气。</p>
+
+								　　<p>无论走到哪里，他都心系生态环境保护。在云南，他跟当地省委书记、省长在洱海边合影。他说：“希望多少年后再照一张照片，那时候水比现在更干净、更清澈，如果不干净了，我要找你们。”在陕西，他强调要尽可能减少对自然环境的损害。</p>
+
+								　　<p>在他看来，绿水青山就是金山银山，保护环境就是保护生产力。“不能吃祖宗饭、断子孙路，用破坏性方式搞发展”；“要像保护眼睛一样保护生态环境，像对待生命一样对待生态环境”。</p>
+
+								　　<p>保护生态环境、留住绿水青山，他亲自部署实施中央环保督查，要求严查腾格里沙漠污染等破坏生态的事件。对那些不顾生态环境盲目决策、造成严重后果的人，他要求追究责任，而且应该终身追究。如今，中央环境保护督察，在已督察的16个省份问责6400多人。</p>
+
+								　　<p>《生态文明体制改革总体方案》印发、新《环境保护法》施行、党政领导干部生态环境损害责任追究办法出台……在他的推动下，一项项改革措施密集出台。如今，政绩考核不再简单以GDP论英雄，责任追究制度让各级领导干部警钟长鸣，“绿水青山就是金山银山”的朴素道理，正得到越来越多人们的认同。</p>
+
+								　　<p>形成绿色发展方式和生活方式并非一日之功，每个人都应该做践行者、推动者。在建设美好家园的道路上，习近平和每一个中国人一样，一直努力着。</p>
+							</article>
+							<p class="text-right">
+								<span class="ckqw">查看全文</span>
+							</p>
+							<p class="clearfix">
+								<img class="news_tx" src="img/tx/tx_5.jpg" />
+								<span class="news_name">小小树</span>
+								<span class="news_date">2017年5月30日 10:00:09</span>
+								<span class="zan">反对(1)</span>
+								<span class="zan">支持(1)</span>
+							</p>
 						</li>
 					</ul>
+				</li>
+				<li class="Comment">
+					<div id="main" style="width: 448px;height:400px;display: inline-block;"></div>
+					<div id="main1" style="width: 448px;height:400px;display: inline-block;"></div>
+				</li>
+				<li>
+					<div id="arrow">
+						<ul>
+							<li class="arrowup"></li>
+							<li class="arrowdown"></li>
+						</ul>
+					</div>
+					<div id="history">
+						<div class="title">
+							<div id="circle">
+								<div class="cmsk"></div>
+								<div class="circlecontent">
+									<div thisyear="" class="timeblock">
+										<span class="numf"></span>
+										<span class="nums"></span>
+										<span class="numt"></span>
+										<span class="numfo"></span>
+										<div class="clear"></div>
+									</div>
+									<div class="timeyear">YEAR</div>
+								</div>
+								<a href="#" class="clock"></a>
+							</div>
+						</div>
+						<div id="content">
+							<ul class="list">
+								<li>
+									<div class="liwrap">
+										<div class="lileft">
+											<div class="date">
+												<span class="year">2015</span>
+												<span class="md">0903</span>
+											</div>
+										</div>
+
+										<div class="point"><b></b></div>
+
+										<div class="liright">
+											<div class="hisct"><img src="img/tiananmen/tiananmen93.jpg" alt="" /></div>
+											<div class="histt"><a href="#">中国人民抗日战争暨世界反法西斯战争胜利70周年大阅兵</a></div>
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="liwrap">
+										<div class="lileft">
+											<div class="date">
+												<span class="year">1990</span>
+												<span class="md">02</span>
+											</div>
+										</div>
+
+										<div class="point"><b></b></div>
+
+										<div class="liright">
+											<div class="hisct"><img src="img/tiananmen/tananmen05.jpg" alt="" /></div>
+											<div class="histt"><a href="#">早些年前的天安门</a></div>
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="liwrap">
+										<div class="lileft">
+											<div class="date">
+												<span class="year">1981</span>
+												<span class="md">07</span>
+											</div>
+										</div>
+
+										<div class="point"><b></b></div>
+
+										<div class="liright">
+											<div class="hisct"><img src="img/tiananmen/tananmen07.jpg" alt="" /></div>
+											<div class="histt"><a href="#">早些年前的天安门</a></div>
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="liwrap">
+										<div class="lileft">
+											<div class="date">
+												<span class="year">1975</span>
+												<span class="md">08</span>
+											</div>
+										</div>
+
+										<div class="point"><b></b></div>
+
+										<div class="liright">
+											<div class="hisct"><img src="img/tiananmen/tananmen03.jpg" alt="" /></div>
+											<div class="histt"><a href="#">早些年前的天安门</a></div>
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="liwrap">
+										<div class="lileft">
+											<div class="date">
+												<span class="year">1973</span>
+												<span class="md">02</span>
+											</div>
+										</div>
+
+										<div class="point"><b></b></div>
+
+										<div class="liright">
+											<div class="hisct"><img src="img/tiananmen/tananmen06.jpg" alt="" /></div>
+											<div class="histt"><a href="#">早些年前的天安门</a></div>
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="liwrap">
+										<div class="lileft">
+											<div class="date">
+												<span class="year">1963</span>
+												<span class="md">12</span>
+											</div>
+										</div>
+
+										<div class="point"><b></b></div>
+
+										<div class="liright">
+											<div class="hisct"><img src="img/tiananmen/tananmen04.jpg" alt="" /></div>
+											<div class="histt"><a href="#">63年天安门三轮车</a></div>
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="liwrap">
+										<div class="lileft">
+											<div class="date">
+												<span class="year">1958</span>
+												<span class="md">10</span>
+											</div>
+										</div>
+
+										<div class="point"><b></b></div>
+
+										<div class="liright">
+											<div class="hisct"><img src="img/tiananmen/tananmen10.jpg" alt="" /></div>
+											<div class="histt"><a href="#">女交通民警在天安门前站岗执勤</a></div>
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="liwrap">
+										<div class="lileft">
+											<div class="date">
+												<span class="year">1950</span>
+												<span class="md">07</span>
+											</div>
+										</div>
+
+										<div class="point"><b></b></div>
+
+										<div class="liright">
+											<div class="hisct"><img src="img/tiananmen/tananmen09.jpg" alt="" /></div>
+											<div class="histt"><a href="#">压路机在天安门城楼前施工作业</a></div>
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="liwrap">
+										<div class="lileft">
+											<div class="date">
+												<span class="year">1950</span>
+												<span class="md">06</span>
+											</div>
+										</div>
+
+										<div class="point"><b></b></div>
+
+										<div class="liright">
+											<div class="hisct"><img src="img/tiananmen/tananmen08.jpg" alt="" /></div>
+											<div class="histt"><a href="#">1950年6月长安街景</a></div>
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="liwrap">
+										<div class="lileft">
+											<div class="date">
+												<span class="year">1949</span>
+												<span class="md">0707</span>
+											</div>
+										</div>
+
+										<div class="point"><b></b></div>
+
+										<div class="liright">
+											<div class="hisct"><img src="img/tiananmen/tananmen02.jpg" alt="" /></div>
+											<div class="histt"><a href="#">1949年7月7日，纪念“七七”抗战12周年大会</a></div>
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="liwrap">
+										<div class="lileft">
+											<div class="date">
+												<span class="year">1949</span>
+												<span class="md">0212</span>
+											</div>
+										</div>
+
+										<div class="point"><b></b></div>
+
+										<div class="liright">
+											<div class="hisct"><img src="img/tiananmen/tananmen01.png" alt="" /></div>
+											<div class="histt"><a href="#">1949年2月12日，庆祝北平解放大会</a></div>
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="liwrap">
+										<div class="lileft">
+											<div class="date">
+
+											</div>
+										</div>
+
+										<div class="point"><b></b></div>
+
+										<div class="liright">
+
+										</div>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</li>
+			</ol>
+		</div>
+		<div class="ul-content">
+			<div id="video">
+				<div class="inlinev">
+					<video width="460" height="400" src="img/movie.ogg" poster="img/pic_06.jpg" preload="auto" muted autoplay controls="controls"></video>
+					<div class="video_detial">
+						<p>所有者：天安门</p>
+						<p>清晰度：高清</p>
+						<p>权限：注册用户</p>
+					</div>
 				</div>
-			</div> -->
+				
+				<div class="inlinev">
+					<video width="460" height="400" src="img/movie.ogg" poster="img/pic_06.jpg" preload="auto" muted autoplay controls="controls"></video>
+					<div class="video_detial">
+						<p>所有者：天安门</p>
+						<p>清晰度：超清</p>
+						<p>权限：注册用户</p>
+					</div>
+				</div>
+
+				<div class="inlinev">
+					<video width="460" height="400" src="img/movie.ogg" poster="img/pic_06.jpg" preload="auto" muted autoplay controls="controls"></video>
+					<div class="video_detial">
+						<p>所有者：天安门</p>
+						<p>清晰度：标清</p>
+						<p>权限：注册用户</p>
+					</div>
+				</div>
+			</div>
 		</div>
 	</article>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/config.js"></script>
-	<script src="js/jquery.nicescroll.js"></script>
-	<!-- <script src="js/jquery.mousewheel.js"></script>
+	<script src="js/jquery.mousewheel.js"></script>
 	<script src="js/jquery.easing.min.js"></script>
-	<script src="js/history.js"></script> -->
+	<script src="js/history.js"></script>
+	<script src="js/convertor.js"></script>
+	<script src="js/echarts.min.js"></script>
 	<script src="js/detial.js"></script>
+	<script src="js/jquery.nicescroll.js"></script>
+	<script>
+		//滚动条
+		$("#video,.Comment").niceScroll({
+			cursorcolor: "#999",
+			cursoropacitymax: 1,
+			touchbehavior: false,
+			cursorwidth: "5px",
+			cursorborder: "0",
+			cursorborderradius: "5px"
+		});
+	</script>
 </body>
 </html>

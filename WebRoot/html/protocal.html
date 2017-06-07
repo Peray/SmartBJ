@@ -10,26 +10,6 @@
 	<link rel="shortcut icon" href="img/ico/ico.png">
 </head>
 <body>
-	<header>
-		<div class="top_bar clearfix">
-			<div class="left_logo">
-				<img src="img/home/logo_03.png" alt="">
-			</div>
-			<ul class="clearfix ul_bar">
-				<li><img src="img/user.png" alt=""></li>
-				<li><a href="feedback.html">反馈</a></li>
-				<li class="Solution"><a href="">解决方案</a>
-					<ul class="Solution_list">
-						<li><a href="community.html">社区管理</a></li>
-						<li><a href="security.html">安保系统</a></li>
-						<li><a href="winav.html">窗内导航</a></li>
-						<li><a href="touch.html">联系我们</a></li>
-					</ul>
-				</li>
-				<li><a href="index.html">首页</a></li>
-			</ul>
-		</div>
-	</header>
 	<section>
 		<div class="title">“Smart 北京”用户服务条款</div>
 		<p class="dunluo">欢迎您加入Smart 北京！为方便您使用Smart 北京提供的各项服务，您应当阅读并同意“Smart 北京”用户服务条款。</p>
@@ -118,25 +98,5 @@
 
 
 	</section>
-	<script src="js/jquery.min.js"></script>
-	<script src="js/application.js"></script>
-	<script>
-		$(document).ready(function() {  
-			//导航栏背景颜色
-			// var navOffset=$(".top_bar").offset().top;  
-			$(window).scroll(function(){  
-				var scrollPos=$(window).scrollTop();  
-				if(scrollPos >=70){  
-					$(".top_bar").addClass('shadow');
-					$(".ul_bar>li>a").addClass('f'); 
-					$(".nav").addClass("fix"); 
-				}else{  
-					$(".top_bar").removeClass("shadow");  
-					$(".ul_bar>li>a").removeClass('f'); 
-					$(".nav").removeClass("fix");  
-				}  
-			});  
-		});  
-	</script>
 </body>
 </html>

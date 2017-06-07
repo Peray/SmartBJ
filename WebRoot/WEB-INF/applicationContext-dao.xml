@@ -14,6 +14,7 @@
     <bean id="userDao" parent="commonDao" class="com.eastdawn.dao.oracle.UserDaoImpl" />  
     <bean id="logLogonDao" parent="commonDao" class="com.eastdawn.dao.oracle.LogLogonDaoImpl" />  
     <bean id="qiyeDao" parent="commonDao" class="com.eastdawn.dao.oracle.QiyeDaoImpl" />  
-    
+    <bean id="fkDao" parent="commonDao" class="com.eastdawn.dao.oracle.FanKuiDaoImpl" />  
+    <bean id="imgDao" parent="commonDao" class="com.eastdawn.dao.oracle.ImgDaoImpl" />  
     
 </beans>

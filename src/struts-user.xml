@@ -33,6 +33,10 @@
 		<action name="qiye"  class="com.eastdawn.action.QiyeAction">
 		</action>
 		
+		<action name="poi"  class="com.eastdawn.action.POIConnection">
+		</action>
+		
+		<action name="fk"  class="com.eastdawn.action.FkAction">
+		</action>
 	</package>
-	
 </struts>    

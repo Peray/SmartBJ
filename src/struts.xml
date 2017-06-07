@@ -37,6 +37,11 @@
 			<result name="add">/admin/select_add.jsp</result>
 		</action> 
 		
+		<action name="qiyeAdmin"  class="com.eastdawn.action.QiyeAction">
+		</action> 
+		<action name="fkAdmin"  class="com.eastdawn.action.FkAction">
+		</action> 
+		
 	</package>
 	<include file="struts-user.xml"></include>
 </struts>    

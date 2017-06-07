@@ -20,6 +20,8 @@ public class QiyeUser implements Serializable {
 	private Integer status;//企业当前状态(0：提交申请、1审核通过、2试用期、3已付费、4注销)
 	private Date tgTime;//审核通过日期
 	private Long userId;//申请人ID
+	private String term;//期限
+	private String content;//拒绝理由
 	
 	public Long getQiyeId() {
 		return qiyeId;
@@ -93,5 +95,16 @@ public class QiyeUser implements Serializable {
 	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
-	
+	public String getTerm() {
+		return term;
+	}
+	public void setTerm(String term) {
+		this.term = term;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
 }

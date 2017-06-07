@@ -13,4 +13,5 @@ public interface QiyeDao {
 	public void updateById(QiyeUser qyUser);
 	public void add(QiyeUser qyUser);
 	public QiyeUser getQiyeById(Long qiyeId);
+	public Long getQiyeCountByPage(Map queryMap);
 }

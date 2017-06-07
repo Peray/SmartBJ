@@ -34,4 +34,8 @@ public class QiyeDaoImpl extends SqlMapClientDaoSupport implements QiyeDao {
 	public QiyeUser getQiyeById(Long qiyeId){
 		return (QiyeUser) getSqlMapClientTemplate().queryForObject("qiyeMap.getQiyeById", qiyeId);
 	}
+	
+	public Long getQiyeCountByPage(Map queryMap) {
+		return (Long) getSqlMapClientTemplate().queryForObject("qiyeMap.getQiyeCountByPage", queryMap);
+	}
 }

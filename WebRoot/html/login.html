@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" href="css/normal.css">
+	<link rel="stylesheet" href="css/login.css">
+</head>
+
+<body>
+	<div class="titled clearfix">
+		<ul class="clearfix">
+			<li class="e" id="tab1">登录</li>
+			<li>注册</li>
+		</ul>
+	</div>
+	<div class="contents">
+		<form id="subdeng" class="con" style="margin:80px auto 0;">
+			<p>
+				<label>账号：</label>
+				<input class="inmap" type="text" name="names" id="names" placeholder="请输入您的账号" required />
+			</p>
+			<p>
+				<label>密码：</label>
+				<input class="inmap" type="password" name="passwords" id="passwords" placeholder="请输入您的密码" required />
+			</p>
+			<p>
+				<label>验证码：</label>
+				<input class="inmap" type="text" name="imageCode" id="imagecode" placeholder="请输入验证码" style="width:175px" required/>
+				<img id='yzm' onclick="getImageCode()" src="" />
+			</p>
+			<p>
+				<input id="subdeng1" class="input_sub" type="submit" readonly value="登录">
+			</p>
+		</form>
+		<form id="subzhuce" class="con">
+			
+			<ul class="tx_ul">
+				<li class="txList checked">
+					<img src="img/tx/tx_1.jpg" alt="" />
+				</li>
+				<li class="txList">
+					<img src="img/tx/tx_2.jpg" alt="" />
+				</li>
+				<li class="txList">
+					<img src="img/tx/tx_3.jpg" alt="" />
+				</li>
+				<li class="txList">
+					<img src="img/tx/tx_4.jpg" alt="" />
+				</li>
+				<li class="txList">
+					<img src="img/tx/tx_5.jpg" alt="" />
+				</li>
+				<li class="txList">
+					<img src="img/tx/tx_6.jpg" alt="" />
+				</li>
+				<li class="txList">
+					<img src="img/tx/tx_7.jpg" alt="" />
+				</li>
+			</ul>
+			<p class="tx_p">
+				<label>头像：</label>
+				<img class="tx" src="img/tx/timg.jpg" alt="" />
+			</p>
+			<p>
+				<label>账号：</label>
+				<input class="inmap" type="text" name="logName" id="logName" placeholder="请输入您的账号" onBlur="yzname()" required />
+			</p>
+			<p>
+				<label>密码：</label>
+				<input class="inmap" type="password" name="logPwd" id="logPwd" placeholder="请设置您的密码" value="" required />
+			</p>
+			<p class="p_password">
+				<label>确认密码：</label>
+				<input class="inmap" type="password" name="checkpwd" id="checkpwd" placeholder="请再次输入密码" required />
+			</p>
+			<p class="p_xieyi">
+				<input type="checkbox" class="input_xieyi" id="xieyi" checked />
+				<label for="xieyi" class="xieyi">阅读并接受</label>
+				<a class="xieyi" target="_blank" href="protocal.html">《Smart 北京用户协议》</a>
+			</p>
+			<p>
+				<input id="subzhuce1" class="input_sub" type="submit" readonly value="注册">
+			</p>
+		</form>
+	</div>
+	<script src="../js/des.js"></script>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/validate/jquery.validate.min.js"></script>
+	<script src="js/valid.js"></script>
+	<script src="js/login.js"></script>
+</body>
+
+</html>
+<script>
+	var images = ['images/3.jpg', 'images/2.jpg', 'images/1.jpg'];
+	var bc = ['#4b2614', '#f0f0f0', '#140502'];
+	var index = 1;
+	var loginCode = "" + new Date().getTime() + Math.random().toString();
+	$(document).ready(function() {
+		$('.slider_box').css("height", $(window).height() - parseInt($('.top').css("height")) - parseInt($('.foot').css("height")));
+		changeImage();
+		isLogin();
+		getImageCode();
+	});
+	$(window).resize(function() {
+		$('.slider_box').css("height", $(window).height() - parseInt($('.top').css("height")) - parseInt($('.foot').css("height")));
+	});
+
+	function getImageCode() {
+		//loginCode=new Date().getTime()+Math.random().toString();
+		document.getElementById("yzm").src = "/platform/role/image.action?logincode=" + loginCode + "&t=" + new Date().getTime() + Math.random().toString();
+	}
+
+	function changeImage() {
+		if (index >= 3)
+			index = 0;
+		$(".slider_box").stop(true, true).animate({
+			opacity: '0'
+		}, 8000, function() {
+			$('.slider_box').css('backgroundColor', bc[index]);
+			$('.slider_box').css("backgroundImage", "url(images/" + (++index) + ".jpg)");
+			$(".slider_box").stop(true, true).animate({
+				opacity: '1'
+			}, 8000, function() {
+				changeImage();
+			});
+		});
+	}
+
+	function isLogin() {
+		$.ajax({
+			type: 'get',
+				url: '/session/isLogin', //是否已登录
+				data: {
+					"username": $('#names').val(),
+					"t": new Date().getTime()
+				},
+				success: function(res) {
+					if (res == "0") {
+						CookieLogin();
+					}
+					if (res == "1") {
+						$('body').css("display", "block");
+						var options = {
+							btnYes: {
+								text: "强行登录",
+								class: ""
+							},
+							btnNo: {
+								text: "取消强行登录",
+								class: ""
+							},
+							msg: "您之前登录过此网站，且你之前帐号现已被登录！<br/>请你核实后选择是否强行登录!。"
+						};
+						$.myConfirm(options, function(r) {
+							if (r == "yes") {
+								CookieLogin();
+							} else if (r == "no") {
+								$('body').css("display", "block");
+							}
+						});
+					}
+				}
+			});
+	}
+
+	function isLogins() {
+		if ($('#imagecode').val() == "") {
+			alert("请输入验证码!");
+			return;
+		}
+		//alert("判断")
+		$.ajax({
+			type: 'get',
+				url: '/session/isLogins', //是否已登录
+				data: {
+					"username": $('#names').val(),
+					"loginCode": loginCode,
+					"imagecode": $('#imagecode').val(),
+					"t": new Date().getTime()
+				},
+				success: function(res) {
+						//alert("pppp"+res);
+						if (res == "0") {
+								//alert(res);
+								login();
+							}
+							if (res == "2") {
+								alert("验证码错误!");
+								return;
+							}
+							if (res == "1") {
+								var options = {
+									btnYes: {
+										text: "强行登录",
+										class: ""
+									},
+									btnNo: {
+										text: "取消强行登录",
+										class: ""
+									},
+									msg: "您之前登录过此网站，且你之前帐号现已被登录！<br/>请你核实后选择是否强行登录!。"
+								};
+
+								$.myConfirm(options, function(r) {
+									if (r == "yes") {
+										login();
+									} else if (r == "no") {
+										$('body').css("display", "block");
+									}
+								});
+							}
+						}
+					});
+	}
+
+	function CookieLogin() {
+		$.ajax({
+			type: 'get',
+				url: '/session/login', //生成唯一标识
+				data: {
+					"id": 0,
+					"t": new Date().getTime()
+				},
+				success: function(res) {
+						//alert(res);
+						//cookie_login
+						$.ajax({
+							type: 'get',
+							url: '/session/cookie_login',
+							data: {
+								"id": "test.test",
+								"t": new Date().getTime()
+							},
+							success: function(res) {
+										//alert("cookie:"+res);
+										if (res != "0") {
+												//alert("很明显cookie成功!");
+												jump("index");
+											} else {
+												$('body').css("display", "block");
+											}
+										}
+									});
+					}
+				});
+	}
+
+	function login() {
+		$.ajax({
+			type: 'get',
+				url: '/session/login', //生成唯一标识
+				data: {
+					"id": 0,
+					"t": new Date().getTime()
+				},
+				success: function(res) {
+						//$('#names').val();
+						//alert($('#names').val());
+						//alert($('#passwords').val());
+						$.ajax({
+							type: 'get',
+								url: '/session/random_3', //随机数
+								data: {
+									"id": 0,
+									"t": new Date().getTime()
+								},
+								success: function(res) {
+										//alert(res);
+										//根据用户名和密码进行登录
+										var username = strEnc($('#names').val(), res.split(',')[0], res.split(',')[1], res.split(',')[2]);
+										var password = strEnc($('#passwords').val(), res.split(',')[0], res.split(',')[1], res.split(',')[2]);
+										$.ajax({
+											type: 'post',
+											url: '/session/userpwd_login',
+											data: {
+												"username": username,
+												"password": password,
+												"t": new Date().getTime()
+											},
+											success: function(res) {
+														//alert("成功登录"+res);
+														if (res == "1") {
+															parent.location.reload();
+															window.parent.getUser();
+														} else {
+															alert(res);
+															return;
+														}
+
+													}
+												});
+									}
+								});
+					}
+				});
+
+	}
+
+	function jump(value) {
+		var form = $("<form></form>");
+		form.attr('action', "/session/jump");
+		form.attr('method', 'post');
+
+		var input1 = $("<input type='hidden' name='jump' />");
+		input1.attr('value', value);
+
+		form.append(input1);
+
+		form.appendTo("body");
+		form.css('display', 'none');
+		form.submit();
+	}
+
+	function login_jump(_username, _password, _jumppage) {
+		var form = $("<form></form>");
+		form.attr('action', "/session/userpwd_login");
+		form.attr('method', 'post');
+
+		var input1 = $("<input type='hidden' name='jump' />");
+		input1.attr('value', _jumppage);
+
+		var input2 = $("<input type='hidden' name='username' />");
+		input2.attr('value', _username);
+
+		var input3 = $("<input type='hidden' name='password' />");
+		input3.attr('value', _password);
+
+		form.append(input1);
+		form.append(input2);
+		form.append(input3);
+		form.appendTo("body");
+		form.css('display', 'none');
+		form.submit();
+	}
+	(function($) {
+		var curContent;
+		$.extend({
+			myConfirm: function(options, callback) {
+				curContent = this;
+				var divMaskStyle = "position:absolute;z-index:999;left:0px;top:0px;background-color:#000000;filter:Alpha(Opacity=50); -moz-opacity:0.5;opacity: 0.5;";
+				var divCntStyle = "position:absolute;width:500px; height:200px;z-index:1000;background-color:white;color: #666666;font-size: 14px;";
+				var divMsgStyle = "padding: 40px 80px 20px;height: 80px;line-height: 22px;";
+				var divBtnStyle = "text-align:center;";
+
+				var btnYesStyle = "width:120px;height: 30px;color: white; background-color: #FF6600;border: 1px;cursor:pointer;";
+				var btnNoStyle = "width:120px;height: 30px;margin-right:50px;border:1px;cursor:pointer;color: #333333;";
+
+				var btnYesText = options.btnYes.text ? options.btnYes.text : "确定";
+				var btnNoText = options.btnNo.text ? options.btnNo.text : "取消";
+				var msg = options.msg ? options.msg : "提示消息";
+
+				var divMask = document.createElement("DIV");
+				var divCnt = document.createElement("DIV");
+				var divMsg = document.createElement("DIV");
+				var divBtn = document.createElement("DIV");
+				var btnYes = document.createElement("BUTTON");
+				var btnNo = document.createElement("BUTTON");
+
+				$(divMask).attr({
+					style: divMaskStyle
+				}).addClass("myMark");
+				$(divCnt).attr({
+					style: divCntStyle
+				}).addClass("myMark");
+				$(divMsg).attr({
+					style: divMsgStyle
+				}).html(msg);
+				$(divBtn).attr({
+					style: divBtnStyle
+				});
+				$(btnYes).attr({
+					style: btnYesStyle,
+					href: "javascript:void(0);"
+				}).html(btnYesText);
+				$(btnNo).attr({
+					style: btnNoStyle,
+					href: "javascript:void(0);"
+				}).html(btnNoText);
+				if (options.btnYes.class) {
+					$(btnYes).addClass(options.btnYes.class);
+				}
+				if (options.btnNo.class) {
+					$(btnNo).addClass(options.btnNo.class);
+				}
+
+				divCnt.appendChild(divMsg);
+				divCnt.appendChild(divBtn);
+				divBtn.appendChild(btnNo);
+				divBtn.appendChild(btnYes);
+				document.body.appendChild(divMask);
+				document.body.appendChild(divCnt);
+
+				$(divMask).show();
+				$(divCnt).show();
+
+				curContent.initMaskSize(divMask, divCnt);
+				window.onresize = function() {
+					curContent.initMaskSize(divMask, divCnt);
+				}
+
+				$(btnYes).unbind("click").click(function() {
+					$(".myMark").remove();
+					callback("yes");
+				});
+				$(btnNo).unbind("click").click(function() {
+					$(".myMark").remove();
+					callback("no");
+				});
+			},
+			initMaskSize: function(divMask, divCnt) {
+				var width = $(window).width();
+				var height = $(window).height();
+				var cntLeft = (width - 500) / 2;
+				cntLeft = cntLeft < 0 ? 0 : cntLeft;
+				var cntTop = (height - 200) / 2;
+				cntTop = cntTop < 0 ? 0 : cntTop;
+
+				$(divMask).css({
+					width: width,
+					height: height
+				});
+				$(divCnt).css({
+					left: cntLeft,
+					top: cntTop
+				});
+			}
+
+		});
+
+	})(jQuery);
+</script>

@@ -12,5 +12,7 @@
     
     <sqlMap resource="sqlMap/userMap.xml" />
     <sqlMap resource="sqlMap/logLogonMap.xml" />
-   <sqlMap resource="sqlMap/qiyeMap.xml" />
+    <sqlMap resource="sqlMap/qiyeMap.xml" />
+    <sqlMap resource="sqlMap/fankuiMap.xml" />
+    <sqlMap resource="sqlMap/imgMap.xml" />
 </sqlMapConfig>
